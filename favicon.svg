@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Freckle favicon — 32 × 32  (scales to 16 × 16 too)
+    Optimised for tiny sizes: dots are slightly bolder and
+    spaced more generously than the full app icon.
+-->
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="32" height="32"
+     viewBox="0 0 32 32">
+
+  <!-- Background -->
+  <rect x="0" y="0" width="32" height="32" rx="7" ry="7" fill="#B5623F"/>
+
+  <!-- Dot 1 — large -->
+  <ellipse cx="13" cy="14" rx="5.5" ry="5.2" fill="#FAF6F1" opacity="0.96"/>
+
+  <!-- Dot 2 — medium -->
+  <ellipse cx="21" cy="20" rx="3.8" ry="3.9" fill="#FAF6F1" opacity="0.90"/>
+
+  <!-- Dot 3 — small -->
+  <ellipse cx="22" cy="13" rx="2.3" ry="2.2" fill="#FAF6F1" opacity="0.82"/>
+
+</svg>
