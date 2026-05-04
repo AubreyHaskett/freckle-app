@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Freckle — Store Assets Generator</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { background: transparent; padding: 40px; }
+
+    /* ---- Phone mockup styles (from index.html) -------------- */
+    .phone {
+      background: var(--ink);
+      padding: 6px;
+      border-radius: 32px;
+      box-shadow: 0 20px 60px rgba(31,27,23,0.18);
+      flex-shrink: 0;
+    }
+    .phone-screen {
+      background: var(--bone);
+      border-radius: 26px;
+      overflow: hidden;
+      width: 168px;
+      display: flex;
+      flex-direction: column;
+    }
+    .phone-screen-lg { width: 180px; }
+    .phone-status {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px 6px;
+      font-size: 10px;
+      font-family: var(--mono);
+      font-weight: 500;
+      color: var(--ink);
+      flex-shrink: 0;
+    }
+    .phone-status .ps-right { display: flex; gap: 4px; align-items: center; }
+    .phone-body { flex: 1; padding: 12px 16px 8px; overflow: hidden; }
+    .phone-nav {
+      background: var(--paper);
+      border-top: 1px solid var(--hairline);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      padding: 6px 0 14px;
+      flex-shrink: 0;
+    }
+    .p-nav-item {
+      display: flex; flex-direction: column; align-items: center; gap: 3px;
+      padding: 6px 2px; font-size: 9px; color: var(--slate); font-weight: 500;
+    }
+    .p-nav-item.active { color: var(--clay); }
+    .p-nav-icon {
+      width: 28px; height: 22px; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .p-nav-item.active .p-nav-icon { background: var(--clay-tint); }
+
+    /* Home */
+    .p-greeting { margin-bottom: 10px; }
+    .p-greeting .micro { font-size: 9px; }
+    .p-greeting h2 { font-family: var(--serif); font-size: 20px; font-weight: 500; letter-spacing: -0.015em; line-height: 1.15; color: var(--ink); margin-top: 3px; font-variation-settings: "opsz" 36; }
+    .p-summary { background: var(--paper); border: 1px solid var(--hairline); border-radius: 10px; padding: 10px; margin-bottom: 12px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+    .p-stat .pn { font-family: var(--serif); font-size: 18px; font-weight: 500; color: var(--ink); line-height: 1; font-variation-settings: "opsz" 36; }
+    .p-stat .pl { font-size: 8px; color: var(--slate); margin-top: 2px; }
+    .p-section-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+    .p-section-head .micro { font-size: 8px; }
+    .p-section-head a { font-size: 9px; color: var(--clay); border: none; }
+    .p-spot { background: var(--paper); border: 1px solid var(--hairline); border-radius: 8px; padding: 8px; display: grid; grid-template-columns: 32px 1fr auto; gap: 8px; align-items: center; margin-bottom: 5px; }
+    .p-thumb { width: 32px; height: 32px; border-radius: 5px; background: linear-gradient(135deg, #d4a574, #a8754f); position: relative; overflow: hidden; flex-shrink: 0; }
+    .p-thumb::after { content: ''; position: absolute; width: 8px; height: 8px; background: #5c3a20; border-radius: 50%; top: 11px; left: 13px; }
+    .p-thumb-2 { background: linear-gradient(135deg, #d8b58e, #b08560); }
+    .p-spot-name { font-size: 10px; font-weight: 600; color: var(--ink); margin-bottom: 1px; }
+    .p-spot-when { font-family: var(--mono); font-size: 8px; color: var(--slate); }
+    .p-tag { font-size: 8px; padding: 2px 6px; border-radius: 999px; font-family: var(--sans); font-weight: 500; white-space: nowrap; }
+    .p-tag-watch { background: var(--amber-light); color: #6E4A0F; }
+    .p-tag-stable { background: var(--sage-light); color: #4F5C3F; }
+
+    /* Detail */
+    .p-gallery { display: flex; gap: 6px; margin: 0 -16px 8px; padding: 0 16px; overflow: hidden; }
+    .p-gallery-card { flex-shrink: 0; width: 72px; border-radius: 8px; overflow: hidden; background: var(--paper); border: 1px solid var(--hairline); }
+    .p-gallery-card.p-gallery-active { border: 2px solid var(--clay); }
+    .p-gallery-card.p-gallery-peek { width: 28px; }
+    .p-gallery-img { height: 64px; background: linear-gradient(135deg, #d4a574, #a8754f); position: relative; }
+    .p-gallery-img::after { content: ''; position: absolute; width: 12px; height: 12px; background: #4a2e18; border-radius: 50%; top: 26px; left: 50%; transform: translateX(-50%); }
+    .p-gallery-img-2 { background: linear-gradient(135deg, #d6a87a, #a57850); }
+    .p-gallery-img-2::after { top: 25px !important; left: 48% !important; width: 11px !important; height: 11px !important; }
+    .p-gallery-img-3 { background: linear-gradient(135deg, #d9b088, #aa7e58); }
+    .p-gallery-img-3::after { top: 27px !important; left: 52% !important; width: 10px !important; height: 10px !important; }
+    .p-gallery-date { font-family: var(--mono); font-size: 7px; color: var(--slate); padding: 4px; text-align: center; letter-spacing: 0.02em; }
+    .p-gallery-peek .p-gallery-date { display: none; }
+    .p-photo-meta { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 8px; color: var(--slate); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 8px; }
+    .p-detail-title { font-family: var(--serif); font-size: 16px; font-weight: 500; letter-spacing: -0.015em; color: var(--ink); margin-bottom: 2px; font-variation-settings: "opsz" 36; }
+    .p-detail-sub { font-size: 9px; color: var(--graphite); margin-bottom: 8px; }
+    .p-measures { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; }
+    .p-measure { background: var(--paper); border: 1px solid var(--hairline); border-radius: 8px; padding: 8px; }
+    .p-measure .ml { font-family: var(--mono); font-size: 7px; color: var(--slate); letter-spacing: 0.06em; text-transform: uppercase; }
+    .p-measure .mv { font-family: var(--serif); font-size: 15px; color: var(--ink); margin-top: 1px; font-weight: 500; font-variation-settings: "opsz" 36; }
+
+    /* Settings */
+    .p-settings-section { margin-bottom: 10px; }
+    .p-settings-label { font-family: var(--mono); font-size: 7px; color: var(--slate); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 4px; }
+    .p-settings-card { background: var(--paper); border: 1px solid var(--hairline); border-radius: 8px; padding: 8px 10px; }
+    .p-settings-row { display: flex; justify-content: space-between; align-items: center; font-size: 10px; color: var(--ink); }
+    .p-settings-sub { font-size: 8px; color: var(--slate); margin-top: 1px; }
+    .p-toggle { width: 24px; height: 14px; background: var(--sage); border-radius: 7px; position: relative; flex-shrink: 0; }
+    .p-toggle::after { content: ''; position: absolute; width: 10px; height: 10px; background: white; border-radius: 50%; top: 2px; right: 2px; }
+    .p-toggle-off { background: var(--shell); }
+    .p-toggle-off::after { right: auto; left: 2px; }
+    .p-settings-btn { background: var(--clay); color: white; border: none; border-radius: 6px; padding: 6px 0; font-size: 9px; font-weight: 600; width: 100%; text-align: center; margin-top: 4px; }
+    .p-settings-btn-outline { background: transparent; color: var(--ink); border: 1px solid var(--border); border-radius: 6px; padding: 5px 0; font-size: 9px; font-weight: 500; width: 100%; text-align: center; margin-top: 4px; }
+
+    /* Learn */
+    .p-learn-header { background: var(--paper); border-radius: 8px; padding: 10px; margin-bottom: 10px; border: 1px solid var(--hairline); }
+    .p-learn-header h3 { font-family: var(--serif); font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 3px; font-variation-settings: "opsz" 36; }
+    .p-learn-header p { font-size: 8px; color: var(--graphite); line-height: 1.4; }
+    .p-learn-disclaimer { background: var(--stone); border-radius: 6px; padding: 6px 8px; font-size: 7px; color: var(--graphite); margin-top: 6px; display: flex; gap: 5px; align-items: flex-start; }
+    .p-abcde-card { background: var(--paper); border-radius: 8px; padding: 10px; border: 1px solid var(--hairline); margin-bottom: 10px; }
+    .p-abcde-card h4 { font-size: 10px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+    .p-abcde-visual { height: 50px; border-radius: 6px; display: flex; align-items: center; justify-content: center; margin-bottom: 6px; position: relative; }
+    .p-abcde-letter { font-family: var(--serif); font-size: 28px; font-weight: 500; color: var(--clay); opacity: 0.2; font-variation-settings: "opsz" 144; }
+    .p-abcde-dots { display: flex; gap: 4px; justify-content: center; margin-top: 4px; }
+    .p-abcde-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--shell); }
+    .p-abcde-dot-active { background: var(--clay); }
+    .p-abcde-desc { font-size: 8px; color: var(--graphite); line-height: 1.4; }
+
+    /* Camera */
+    .p-cam-bg { background: #1a1a1a; border-radius: 26px; overflow: hidden; display: flex; flex-direction: column; }
+    .p-cam-bg .phone-status { color: #ccc; }
+    .p-cam-body { flex: 1; position: relative; overflow: hidden; }
+    .p-cam-viewfinder { position: absolute; inset: 0; background: linear-gradient(160deg, #c9a07a, #b08560 40%, #a07048); }
+    .p-cam-mole { position: absolute; width: 22px; height: 22px; background: radial-gradient(circle, #3e2210, #5c3a20 60%, transparent); border-radius: 50%; top: 55%; left: 48%; transform: translate(-50%, -50%); }
+    .p-cam-overlay { position: absolute; inset: 0; background: linear-gradient(160deg, #c4996f, #a87a52 40%, #966840); opacity: 0.3; }
+    .p-cam-overlay-mole { position: absolute; width: 18px; height: 18px; background: radial-gradient(circle, #3e2210, #5c3a20 60%, transparent); border-radius: 50%; top: 56%; left: 49%; transform: translate(-50%, -50%); opacity: 0.35; }
+    .p-cam-coin { position: absolute; width: 16px; height: 16px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #d4a65c, #b8863c 50%, #9c7230); border: 1px solid #8a6428; top: 58%; left: 62%; }
+    .p-cam-controls-top { position: absolute; top: 0; left: 0; right: 0; background: rgba(0,0,0,0.5); padding: 8px 10px; display: flex; flex-direction: column; gap: 4px; }
+    .p-cam-row { display: flex; align-items: center; justify-content: space-between; font-size: 8px; color: #ddd; }
+    .p-cam-toggle { width: 20px; height: 12px; background: var(--clay); border-radius: 6px; position: relative; }
+    .p-cam-toggle::after { content: ''; position: absolute; width: 8px; height: 8px; background: white; border-radius: 50%; top: 2px; right: 2px; }
+    .p-cam-slider-track { flex: 1; height: 3px; background: #555; border-radius: 2px; margin: 0 6px; position: relative; }
+    .p-cam-slider-fill { height: 100%; width: 30%; background: var(--clay); border-radius: 2px; }
+    .p-cam-slider-thumb { position: absolute; width: 8px; height: 8px; background: white; border-radius: 50%; top: -2.5px; left: 28%; }
+    .p-cam-bottom { position: absolute; bottom: 12px; left: 0; right: 0; display: flex; justify-content: center; align-items: center; gap: 10px; }
+    .p-cam-btn { width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; }
+    .p-cam-btn-capture { width: 42px; height: 42px; border-radius: 50%; background: var(--clay); border: 3px solid white; display: flex; align-items: center; justify-content: center; }
+
+    /* Body location */
+    .p-loc-selected { background: var(--paper); border: 1px solid var(--hairline); border-radius: 8px; padding: 8px 10px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .p-loc-selected-name { font-size: 10px; font-weight: 600; color: var(--ink); }
+    .p-loc-chips { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; }
+    .p-loc-chip { font-size: 7px; padding: 3px 7px; border-radius: 999px; background: var(--stone); color: var(--graphite); font-weight: 500; white-space: nowrap; }
+    .p-loc-chip-active { background: var(--clay-tint); color: var(--clay-deep); }
+    .p-loc-item { background: var(--paper); border: 1px solid var(--hairline); border-radius: 6px; padding: 7px 10px; font-size: 9px; color: var(--ink); margin-bottom: 4px; }
+    .p-loc-item-selected { border-color: var(--clay); font-weight: 600; }
+
+    /* ---- Store frame styles --------------------------------- */
+    .store-frame {
+      position: relative;
+      overflow: hidden;
+      margin: 30px;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .store-frame.frame-light {
+      background: linear-gradient(170deg, #FAF6F1 0%, #F0EBE3 50%, #E8E2D8 100%);
+    }
+
+    .store-frame.frame-dark {
+      background: linear-gradient(170deg, #2A2520 0%, #1F1B17 50%, #171310 100%);
+    }
+
+    .frame-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8%;
+    }
+
+    .frame-brand img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .frame-brand span {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      font-variation-settings: "opsz" 36;
+    }
+
+    .frame-light .frame-brand span { color: var(--clay); }
+    .frame-dark .frame-brand span { color: var(--clay-light); }
+
+    .frame-headline {
+      text-align: center;
+      margin-top: 4%;
+      padding: 0 10%;
+    }
+
+    .frame-headline h2 {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-variation-settings: "opsz" 80;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      margin-bottom: 8px;
+    }
+
+    .frame-headline p {
+      font-family: var(--sans);
+      line-height: 1.5;
+    }
+
+    .frame-light .frame-headline h2 { color: var(--ink); }
+    .frame-light .frame-headline p { color: var(--graphite); }
+    .frame-dark .frame-headline h2 { color: #FAF6F1; }
+    .frame-dark .frame-headline p { color: #B8B0A6; }
+
+    .frame-device {
+      margin-top: auto;
+      transform-origin: top center;
+      margin-bottom: -25%;
+    }
+
+    /* ---- Feature graphic ------------------------------------ */
+    .feature-graphic {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      padding: 0 60px;
+    }
+
+    .feature-graphic .fg-text {
+      flex: 1;
+      text-align: left;
+    }
+
+    .feature-graphic .fg-text h2 {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-variation-settings: "opsz" 80;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .feature-graphic .fg-text p {
+      font-family: var(--sans);
+      font-size: 14px;
+      color: var(--graphite);
+      line-height: 1.5;
+    }
+
+    .feature-graphic .fg-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .feature-graphic .fg-brand img { width: 28px; height: 28px; }
+    .feature-graphic .fg-brand span {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--clay);
+      letter-spacing: -0.02em;
+      font-variation-settings: "opsz" 36;
+    }
+  </style>
+</head>
+<body>
+
+<script>
+// ---- Reusable SVG icons ----
+const IC = {
+  signal: `<svg width="12" height="9" viewBox="0 0 14 10" fill="currentColor"><path d="M0 8h2v2H0zm4-2h2v4H4zm4-3h2v7H8zm4-3h2v10h-2z"/></svg>`,
+  battery: `<svg width="12" height="9" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="0.5" y="2" width="11" height="6" rx="1.5"/><rect x="12" y="4" width="1.5" height="2"/></svg>`,
+  back: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink)"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>`,
+  dots: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink)"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>`,
+  check: `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--clay)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>`,
+  home: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9"/><path d="M5 10v10h14V10"/></svg>`,
+  spots: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></svg>`,
+  learn: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`,
+  settings: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>`,
+  info: `<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;color:var(--slate)"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>`,
+  flash: `<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#ddd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>`,
+  camFlip: `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M8 3H3v5M3 16v5h5M21 16v5h-5M7 12a5 5 0 0 1 10 0"/></svg>`,
+  gallery: `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>`,
+  camera: `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="4"/></svg>`,
+  eye: `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`,
+};
+
+const statusBar = `<div class="phone-status"><span>9:41</span><div class="ps-right">${IC.signal}${IC.battery}</div></div>`;
+const statusBarDark = `<div class="phone-status" style="color:#ccc;background:rgba(0,0,0,0.3);position:relative;z-index:2;"><span>9:41</span><div class="ps-right"><span style="color:#ccc">${IC.signal}</span><svg width="12" height="9" viewBox="0 0 14 10" fill="none" stroke="#ccc" stroke-width="1.2"><rect x="0.5" y="2" width="11" height="6" rx="1.5"/><rect x="12" y="4" width="1.5" height="2"/></svg></div></div>`;
+
+function navBar(active) {
+  const tabs = [
+    { name: 'Today', icon: IC.home },
+    { name: 'Spots', icon: IC.spots },
+    { name: 'Learn', icon: IC.learn },
+    { name: 'Settings', icon: IC.settings },
+  ];
+  return `<div class="phone-nav">${tabs.map(t =>
+    `<div class="p-nav-item${t.name === active ? ' active' : ''}"><div class="p-nav-icon">${t.icon}</div>${t.name}</div>`
+  ).join('')}</div>`;
+}
+
+// ---- Screen content definitions ----
+const SCREENS = {
+  today: {
+    height: 340,
+    html: `${statusBar}
+      <div class="phone-body">
+        <div class="p-greeting"><div class="micro">Sunday, 4 May</div><h2>Good morning.</h2></div>
+        <div class="p-summary">
+          <div class="p-stat"><div class="pn">8</div><div class="pl">Tracked spots</div></div>
+          <div class="p-stat"><div class="pn">2</div><div class="pl">Due check-in</div></div>
+          <div class="p-stat"><div class="pn">42</div><div class="pl">Total photos</div></div>
+        </div>
+        <div class="p-section-head"><span class="micro">Due for a check</span><a href="#">See all</a></div>
+        <div class="p-spot"><div class="p-thumb"></div><div><div class="p-spot-name">Mole, upper back</div><div class="p-spot-when">DUE TODAY · 30 DAYS</div></div><span class="p-tag p-tag-watch">Watch</span></div>
+        <div class="p-spot"><div class="p-thumb p-thumb-2"></div><div><div class="p-spot-name">Sun spot, R cheek</div><div class="p-spot-when">DUE IN 2 DAYS</div></div><span class="p-tag p-tag-stable">Stable</span></div>
+      </div>
+      ${navBar('Today')}`,
+  },
+
+  detail: {
+    height: 370,
+    screenClass: 'phone-screen-lg',
+    html: `${statusBar}
+      <div class="phone-body">
+        <div style="display:flex;justify-content:space-between;margin-bottom:10px;">${IC.back}${IC.dots}</div>
+        <div class="p-gallery">
+          <div class="p-gallery-card p-gallery-active"><div class="p-gallery-img"></div><div class="p-gallery-date">04 May 2026</div></div>
+          <div class="p-gallery-card"><div class="p-gallery-img p-gallery-img-2"></div><div class="p-gallery-date">28 Mar 2026</div></div>
+          <div class="p-gallery-card p-gallery-peek"><div class="p-gallery-img p-gallery-img-3"></div><div class="p-gallery-date">14 Jan 2026</div></div>
+        </div>
+        <div class="p-photo-meta"><span>04 MAY 2026 · 09:32</span><span>PHOTO 6 OF 6</span></div>
+        <div class="p-detail-title">Mole, upper left back</div>
+        <div class="p-detail-sub">First tracked 14 January 2026</div>
+        <span class="p-tag p-tag-watch">● Worth watching</span>
+        <div class="p-measures">
+          <div class="p-measure"><div class="ml">Reference</div><div class="mv">US Penny</div></div>
+          <div class="p-measure"><div class="ml">Size</div><div class="mv">19.1 mm</div></div>
+        </div>
+      </div>
+      ${navBar('Spots')}`,
+  },
+
+  camera: {
+    height: 370,
+    screenClass: 'p-cam-bg',
+    noDefaultScreen: true,
+    html: `${statusBarDark}
+      <div class="p-cam-body">
+        <div class="p-cam-viewfinder"><div class="p-cam-mole"></div><div class="p-cam-coin"></div></div>
+        <div class="p-cam-overlay"><div class="p-cam-overlay-mole"></div></div>
+        <div class="p-cam-controls-top">
+          <div class="p-cam-row"><span>Flash</span>${IC.flash}</div>
+          <div class="p-cam-row"><span style="width:36px;">Zoom: 1.0x</span><div class="p-cam-slider-track"><div class="p-cam-slider-fill" style="width:10%"></div><div class="p-cam-slider-thumb" style="left:8%"></div></div></div>
+          <div class="p-cam-row"><span>Show overlay</span><div class="p-cam-toggle"></div></div>
+          <div class="p-cam-row"><span style="width:36px;">Opacity: 30%</span><div class="p-cam-slider-track"><div class="p-cam-slider-fill"></div><div class="p-cam-slider-thumb"></div></div></div>
+        </div>
+        <div class="p-cam-bottom">
+          <div class="p-cam-btn">${IC.camFlip}</div>
+          <div class="p-cam-btn">${IC.gallery}</div>
+          <div class="p-cam-btn-capture">${IC.camera}</div>
+          <div class="p-cam-btn">${IC.eye}</div>
+        </div>
+      </div>`,
+  },
+
+  bodyLocation: {
+    height: 370,
+    html: `${statusBar}
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 16px 4px;">
+        ${IC.back}
+        <span style="font-size:11px;font-weight:500;color:var(--ink);">Where is it?</span>
+        <span style="font-size:9px;color:var(--clay);">Cancel</span>
+      </div>
+      <div class="phone-body" style="padding-top:8px;">
+        <div class="p-loc-selected"><span class="p-loc-selected-name">Left Cheek</span>${IC.check}</div>
+        <div style="font-size:9px;font-weight:500;color:var(--ink);margin-bottom:6px;">Select a body area:</div>
+        <div class="p-loc-chips">
+          <span class="p-loc-chip p-loc-chip-active">Head / Face</span>
+          <span class="p-loc-chip">Neck</span>
+          <span class="p-loc-chip">Torso</span>
+          <span class="p-loc-chip">Arms</span>
+          <span class="p-loc-chip">Legs</span>
+          <span class="p-loc-chip">Hands</span>
+        </div>
+        <div class="p-loc-item">Forehead</div>
+        <div class="p-loc-item p-loc-item-selected">Left Cheek ✓</div>
+        <div class="p-loc-item">Right Cheek</div>
+        <div class="p-loc-item">Nose</div>
+        <div class="p-loc-item">Chin</div>
+      </div>`,
+  },
+
+  learn: {
+    height: 340,
+    html: `${statusBar}
+      <div class="phone-body">
+        <div class="p-learn-header">
+          <h3>Sun Safety Education</h3>
+          <p>Resources to help you understand and protect your skin.</p>
+          <div class="p-learn-disclaimer">${IC.info}<span>Freckle is not a medical app. Always consult healthcare professionals.</span></div>
+        </div>
+        <div class="p-abcde-card">
+          <h4>ABCDEs of Melanoma</h4>
+          <div class="p-abcde-visual"><span class="p-abcde-letter">A</span></div>
+          <div style="font-size:9px;font-weight:600;color:var(--ink);margin-bottom:2px;">Asymmetry</div>
+          <div class="p-abcde-desc">One half of the mole doesn't match the other half.</div>
+          <div class="p-abcde-dots"><div class="p-abcde-dot p-abcde-dot-active"></div><div class="p-abcde-dot"></div><div class="p-abcde-dot"></div><div class="p-abcde-dot"></div><div class="p-abcde-dot"></div></div>
+        </div>
+        <div style="font-size:8px;font-style:italic;color:var(--slate);">Source: American Academy of Dermatology</div>
+      </div>
+      ${navBar('Learn')}`,
+  },
+
+  settings: {
+    height: 340,
+    html: `${statusBar}
+      <div class="phone-body">
+        <div class="p-settings-section"><div class="p-settings-label">Appearance</div><div class="p-settings-card"><div class="p-settings-row"><div><div>Dark Theme</div><div class="p-settings-sub">Disabled</div></div><div class="p-toggle p-toggle-off"></div></div></div></div>
+        <div class="p-settings-section"><div class="p-settings-label">PDF Report</div><div class="p-settings-card"><div style="font-size:8px;color:var(--graphite);line-height:1.4;margin-bottom:4px;">Generate a PDF report to share with your dermatologist.</div><div class="p-settings-btn">Export PDF Report</div></div></div>
+        <div class="p-settings-section"><div class="p-settings-label">Backup &amp; Restore</div><div class="p-settings-card"><div style="font-size:8px;color:var(--graphite);line-height:1.4;margin-bottom:4px;">Export your data to backup all freckles and photos.</div><div class="p-settings-btn">Export Data</div><div class="p-settings-btn-outline">Import Data</div></div></div>
+        <div class="p-settings-section"><div class="p-settings-label">Legal &amp; About</div><div class="p-settings-card"><div class="p-settings-btn-outline">Privacy Policy</div><div class="p-settings-btn-outline">Terms &amp; Conditions</div></div></div>
+      </div>
+      ${navBar('Settings')}`,
+  },
+};
+
+// ---- Marketing copy per screen ----
+const COPY = {
+  today:        { h: 'Every spot.<br>One glance.',           p: 'Smart reminders keep you on track.' },
+  detail:       { h: 'Watch changes<br>over time.',          p: 'Photo timeline with measurements and notes.' },
+  camera:       { h: 'Nail the angle.<br>Every time.',       p: 'Ghost overlay lines up your follow-up shots.' },
+  bodyLocation: { h: '60+ body locations.<br>Zero guesswork.', p: 'Organised tracking from head to toe.' },
+  learn:        { h: 'Know what<br>to look for.',            p: 'Built-in sun safety education from experts.' },
+  settings:     { h: 'Your data.<br>Your way.',              p: 'Export PDFs, backup everything, stay in control.' },
+};
+
+// ---- Target sizes ----
+const TARGETS = [
+  { prefix: 'play-phone',  w: 1080, h: 1920, scale: 3.6,  headlineSize: 42, subSize: 16 },
+  { prefix: 'ios-6.9',     w: 1320, h: 2868, scale: 5.4,  headlineSize: 52, subSize: 20 },
+];
+
+const SCREEN_ORDER = ['today', 'detail', 'camera', 'bodyLocation', 'learn', 'settings'];
+
+// ---- Generate frames ----
+const container = document.body;
+
+TARGETS.forEach(target => {
+  SCREEN_ORDER.forEach((screenKey, idx) => {
+    const screen = SCREENS[screenKey];
+    const copy = COPY[screenKey];
+    const isDark = screenKey === 'camera';
+    const frameClass = isDark ? 'frame-dark' : 'frame-light';
+    const num = idx + 1;
+
+    const screenClass = screen.noDefaultScreen ? screen.screenClass : `phone-screen ${screen.screenClass || ''}`;
+    const phoneHTML = `<div class="phone"><div class="${screenClass}" style="height:${screen.height}px;">${screen.html}</div></div>`;
+
+    const frame = document.createElement('div');
+    frame.className = `store-frame ${frameClass}`;
+    frame.id = `${target.prefix}-${num}-${screenKey}`;
+    frame.style.width = target.w + 'px';
+    frame.style.height = target.h + 'px';
+
+    frame.innerHTML = `
+      <div class="frame-brand">
+        <img src="favicon.svg" alt="">
+        <span>freckle</span>
+      </div>
+      <div class="frame-headline" style="margin-top:3%;">
+        <h2 style="font-size:${target.headlineSize}px;">${copy.h}</h2>
+        <p style="font-size:${target.subSize}px;">${copy.p}</p>
+      </div>
+      <div class="frame-device" style="transform:scale(${target.scale}); margin-top:4%;">
+        ${phoneHTML}
+      </div>
+    `;
+
+    container.appendChild(frame);
+  });
+});
+
+// ---- Feature Graphic (Play Store) ----
+const fg = document.createElement('div');
+fg.className = 'store-frame frame-light feature-graphic';
+fg.id = 'play-feature-graphic';
+fg.style.width = '1024px';
+fg.style.height = '500px';
+fg.innerHTML = `
+  <div class="fg-text">
+    <div class="fg-brand">
+      <img src="favicon.svg" alt="">
+      <span>freckle</span>
+    </div>
+    <h2 style="font-size:36px;">Quiet skin tracking.</h2>
+    <p>Track moles and blemishes over time. Everything stays on your phone.</p>
+  </div>
+  <div style="transform:scale(0.95);transform-origin:center center;">
+    <div class="phone">
+      <div class="phone-screen" style="height:340px;">
+        ${SCREENS.today.html}
+      </div>
+    </div>
+  </div>
+`;
+container.appendChild(fg);
+</script>
+
+</body>
+</html>

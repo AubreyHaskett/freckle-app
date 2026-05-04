@@ -240,21 +240,428 @@
     .p-tag-stable  { background: var(--sage-light);  color: #4F5C3F; }
 
     /* Detail screen content */
-    .p-photo-hero {
-      background: linear-gradient(135deg, #d4a574 0%, #a8754f 100%);
-      height: 130px;
-      border-radius: 10px;
-      margin-bottom: 8px;
-      position: relative; overflow: hidden;
+    .p-gallery {
+      display: flex;
+      gap: 6px;
+      margin: 0 -16px 8px;
+      padding: 0 16px;
+      overflow: hidden;
     }
-    .p-photo-hero::after {
+    .p-gallery-card {
+      flex-shrink: 0;
+      width: 72px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--paper);
+      border: 1px solid var(--hairline);
+    }
+    .p-gallery-card.p-gallery-active {
+      border: 2px solid var(--clay);
+    }
+    .p-gallery-card.p-gallery-peek {
+      width: 28px;
+    }
+    .p-gallery-img {
+      height: 64px;
+      background: linear-gradient(135deg, #d4a574 0%, #a8754f 100%);
+      position: relative;
+    }
+    .p-gallery-img::after {
       content: '';
       position: absolute;
-      width: 28px; height: 28px;
+      width: 12px; height: 12px;
       background: #4a2e18;
       border-radius: 50%;
-      top: 50px; left: 50%;
+      top: 26px; left: 50%;
       transform: translateX(-50%);
+    }
+    .p-gallery-img-2 {
+      background: linear-gradient(135deg, #d6a87a 0%, #a57850 100%);
+    }
+    .p-gallery-img-2::after { top: 25px !important; left: 48% !important; width: 11px !important; height: 11px !important; }
+    .p-gallery-img-3 {
+      background: linear-gradient(135deg, #d9b088 0%, #aa7e58 100%);
+    }
+    .p-gallery-img-3::after { top: 27px !important; left: 52% !important; width: 10px !important; height: 10px !important; }
+    .p-gallery-date {
+      font-family: var(--mono);
+      font-size: 7px;
+      color: var(--slate);
+      padding: 4px;
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+    .p-gallery-peek .p-gallery-date { display: none; }
+
+    /* Settings screen content */
+    .p-settings-section { margin-bottom: 10px; }
+    .p-settings-label {
+      font-family: var(--mono);
+      font-size: 7px;
+      color: var(--slate);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .p-settings-card {
+      background: var(--paper);
+      border: 1px solid var(--hairline);
+      border-radius: 8px;
+      padding: 8px 10px;
+    }
+    .p-settings-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10px;
+      color: var(--ink);
+    }
+    .p-settings-sub { font-size: 8px; color: var(--slate); margin-top: 1px; }
+    .p-toggle {
+      width: 24px; height: 14px;
+      background: var(--sage);
+      border-radius: 7px;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .p-toggle::after {
+      content: '';
+      position: absolute;
+      width: 10px; height: 10px;
+      background: white;
+      border-radius: 50%;
+      top: 2px; right: 2px;
+    }
+    .p-toggle-off { background: var(--shell); }
+    .p-toggle-off::after { right: auto; left: 2px; }
+    .p-settings-btn {
+      background: var(--clay);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 6px 0;
+      font-size: 9px;
+      font-weight: 600;
+      width: 100%;
+      text-align: center;
+      margin-top: 4px;
+    }
+    .p-settings-btn-outline {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 5px 0;
+      font-size: 9px;
+      font-weight: 500;
+      width: 100%;
+      text-align: center;
+      margin-top: 4px;
+    }
+
+    /* Learn screen content */
+    .p-learn-header {
+      background: var(--paper);
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid var(--hairline);
+    }
+    .p-learn-header h3 {
+      font-family: var(--serif);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 3px;
+      font-variation-settings: "opsz" 36;
+    }
+    .p-learn-header p {
+      font-size: 8px;
+      color: var(--graphite);
+      line-height: 1.4;
+    }
+    .p-learn-disclaimer {
+      background: var(--stone);
+      border-radius: 6px;
+      padding: 6px 8px;
+      font-size: 7px;
+      color: var(--graphite);
+      margin-top: 6px;
+      display: flex;
+      gap: 5px;
+      align-items: flex-start;
+    }
+    .p-abcde-card {
+      background: var(--paper);
+      border-radius: 8px;
+      padding: 10px;
+      border: 1px solid var(--hairline);
+      margin-bottom: 10px;
+    }
+    .p-abcde-card h4 {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .p-abcde-visual {
+      height: 50px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 6px;
+      position: relative;
+    }
+    .p-abcde-letter {
+      font-family: var(--serif);
+      font-size: 28px;
+      font-weight: 500;
+      color: var(--clay);
+      opacity: 0.2;
+      font-variation-settings: "opsz" 144;
+    }
+    .p-abcde-dots {
+      display: flex;
+      gap: 4px;
+      justify-content: center;
+      margin-top: 4px;
+    }
+    .p-abcde-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--shell);
+    }
+    .p-abcde-dot-active { background: var(--clay); }
+    .p-abcde-desc { font-size: 8px; color: var(--graphite); line-height: 1.4; }
+
+    /* Camera overlay screen */
+    .p-cam-bg {
+      background: #1a1a1a;
+      border-radius: 26px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .p-cam-bg .phone-status { color: #ccc; }
+    .p-cam-body { flex: 1; position: relative; overflow: hidden; }
+    .p-cam-viewfinder {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, #c9a07a 0%, #b08560 40%, #a07048 100%);
+    }
+    .p-cam-mole {
+      position: absolute;
+      width: 22px; height: 22px;
+      background: radial-gradient(circle, #3e2210 0%, #5c3a20 60%, transparent 100%);
+      border-radius: 50%;
+      top: 55%; left: 48%;
+      transform: translate(-50%, -50%);
+    }
+    .p-cam-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, #c4996f 0%, #a87a52 40%, #966840 100%);
+      opacity: 0.3;
+    }
+    .p-cam-overlay-mole {
+      position: absolute;
+      width: 18px; height: 18px;
+      background: radial-gradient(circle, #3e2210 0%, #5c3a20 60%, transparent 100%);
+      border-radius: 50%;
+      top: 56%; left: 49%;
+      transform: translate(-50%, -50%);
+      opacity: 0.35;
+    }
+    .p-cam-coin {
+      position: absolute;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #d4a65c 0%, #b8863c 50%, #9c7230 100%);
+      border: 1px solid #8a6428;
+      top: 58%; left: 62%;
+    }
+    .p-cam-controls-top {
+      position: absolute; top: 0; left: 0; right: 0;
+      background: rgba(0,0,0,0.5);
+      padding: 8px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .p-cam-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 8px;
+      color: #ddd;
+    }
+    .p-cam-toggle {
+      width: 20px; height: 12px;
+      background: var(--clay);
+      border-radius: 6px;
+      position: relative;
+    }
+    .p-cam-toggle::after {
+      content: '';
+      position: absolute;
+      width: 8px; height: 8px;
+      background: white;
+      border-radius: 50%;
+      top: 2px; right: 2px;
+    }
+    .p-cam-slider-track {
+      flex: 1;
+      height: 3px;
+      background: #555;
+      border-radius: 2px;
+      margin: 0 6px;
+      position: relative;
+    }
+    .p-cam-slider-fill {
+      height: 100%;
+      width: 30%;
+      background: var(--clay);
+      border-radius: 2px;
+    }
+    .p-cam-slider-thumb {
+      position: absolute;
+      width: 8px; height: 8px;
+      background: white;
+      border-radius: 50%;
+      top: -2.5px; left: 28%;
+    }
+    .p-cam-bottom {
+      position: absolute; bottom: 12px; left: 0; right: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+    .p-cam-btn {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .p-cam-btn-capture {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      background: var(--clay);
+      border: 3px solid white;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* Body location picker screen */
+    .p-loc-selected {
+      background: var(--paper);
+      border: 1px solid var(--hairline);
+      border-radius: 8px;
+      padding: 8px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .p-loc-selected-name { font-size: 10px; font-weight: 600; color: var(--ink); }
+    .p-loc-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+    .p-loc-chip {
+      font-size: 7px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: var(--stone);
+      color: var(--graphite);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .p-loc-chip-active {
+      background: var(--clay-tint);
+      color: var(--clay-deep);
+    }
+    .p-loc-item {
+      background: var(--paper);
+      border: 1px solid var(--hairline);
+      border-radius: 6px;
+      padding: 7px 10px;
+      font-size: 9px;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .p-loc-item-selected {
+      border-color: var(--clay);
+      font-weight: 600;
+    }
+
+    /* Feature showcase sections (text + phone side by side) */
+    .feature-showcase {
+      padding: 80px 0;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .feature-showcase .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .feature-showcase.reverse .container {
+      direction: rtl;
+    }
+    .feature-showcase.reverse .container > * {
+      direction: ltr;
+    }
+    .feature-showcase-text .micro { margin-bottom: 16px; display: block; }
+    .feature-showcase-text h2 {
+      font-family: var(--serif);
+      font-size: clamp(28px, 3.5vw, 38px);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      font-variation-settings: "opsz" 80;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+    .feature-showcase-text p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--graphite);
+      margin-bottom: 16px;
+    }
+    .feature-showcase-phones {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .feature-detail-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0 0;
+    }
+    .feature-detail-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--graphite);
+      padding: 8px 0;
+    }
+    .feature-detail-list li svg {
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: var(--clay);
+    }
+
+    @media (max-width: 900px) {
+      .feature-showcase .container { grid-template-columns: 1fr; gap: 48px; }
+      .feature-showcase.reverse .container { direction: ltr; }
+      .feature-showcase-phones { justify-content: center; }
+    }
+    @media (max-width: 600px) {
+      .feature-showcase { padding: 56px 0; }
     }
     .p-photo-meta {
       display: flex;
@@ -292,60 +699,7 @@
     .p-measure .mv { font-family: var(--serif); font-size: 15px; color: var(--ink); margin-top: 1px; font-weight: 500; font-variation-settings: "opsz" 36; }
     .p-measure .md { font-size: 8px; color: var(--amber); margin-top: 1px; }
 
-    /* ---- Features ----------------------------------------- */
-    .features {
-      padding: 80px 0;
-      border-bottom: 1px solid var(--hairline);
-    }
 
-    .features-header {
-      text-align: center;
-      margin-bottom: 56px;
-    }
-
-    .features-header .micro { margin-bottom: 12px; display: block; }
-
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
-      background: var(--hairline);
-      border: 1px solid var(--hairline);
-      border-radius: 16px;
-      overflow: hidden;
-    }
-
-    .feature-card {
-      background: var(--paper);
-      padding: 32px 28px;
-    }
-
-    .feature-icon {
-      width: 40px; height: 40px;
-      background: var(--stone);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-      color: var(--clay);
-    }
-
-    .feature-card h3 {
-      font-family: var(--serif);
-      font-size: 20px;
-      font-weight: 500;
-      letter-spacing: -0.01em;
-      font-variation-settings: "opsz" 36;
-      color: var(--ink);
-      margin-bottom: 10px;
-    }
-
-    .feature-card p {
-      font-size: 14px;
-      line-height: 1.65;
-      color: var(--graphite);
-    }
 
     /* ---- Privacy section ---------------------------------- */
     .privacy-section {
@@ -483,13 +837,11 @@
       .hero .container { grid-template-columns: 1fr; gap: 48px; }
       .hero-text { max-width: 100%; }
       .mockup-pair { justify-content: center; }
-      .feature-grid { grid-template-columns: 1fr; }
       .privacy-section .container { grid-template-columns: 1fr; gap: 48px; }
     }
 
     @media (max-width: 600px) {
       .hero { padding: 56px 0 48px; }
-      .features { padding: 56px 0; }
       .privacy-section { padding: 56px 0; }
       .download-section { padding: 56px 0; }
       .phone-sm { display: none; }
@@ -595,16 +947,16 @@
               Today
             </div>
             <div class="p-nav-item">
-              <div class="p-nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg></div>
+              <div class="p-nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></svg></div>
               Spots
             </div>
             <div class="p-nav-item">
-              <div class="p-nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M9 3v4M15 3v4"/></svg></div>
-              History
+              <div class="p-nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+              Learn
             </div>
             <div class="p-nav-item">
-              <div class="p-nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg></div>
-              Learn
+              <div class="p-nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+              Settings
             </div>
           </div>
         </div>
@@ -625,27 +977,38 @@
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink)"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink)"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
             </div>
-            <div class="p-photo-hero"></div>
+            <!-- Photo gallery strip -->
+            <div class="p-gallery">
+              <div class="p-gallery-card p-gallery-active">
+                <div class="p-gallery-img"></div>
+                <div class="p-gallery-date">04 May 2026</div>
+              </div>
+              <div class="p-gallery-card">
+                <div class="p-gallery-img p-gallery-img-2"></div>
+                <div class="p-gallery-date">28 Mar 2026</div>
+              </div>
+              <div class="p-gallery-card p-gallery-peek">
+                <div class="p-gallery-img p-gallery-img-3"></div>
+                <div class="p-gallery-date">14 Jan 2026</div>
+              </div>
+            </div>
             <div class="p-photo-meta">
               <span>04 MAY 2026 · 09:32</span>
-              <span>6 OF 6</span>
+              <span>PHOTO 6 OF 6</span>
             </div>
             <div class="p-detail-title">Mole, upper left back</div>
             <div class="p-detail-sub">First tracked 14 January 2026</div>
             <span class="p-tag p-tag-watch">● Worth watching</span>
             <div class="p-measures">
               <div class="p-measure">
-                <div class="ml">Width</div>
-                <div class="mv">4.2 mm</div>
-                <div class="md">+0.3 mm vs last</div>
+                <div class="ml">Reference</div>
+                <div class="mv">US Penny</div>
               </div>
               <div class="p-measure">
-                <div class="ml">Height</div>
-                <div class="mv">3.8 mm</div>
-                <div class="md" style="color: var(--sage);">No change</div>
+                <div class="ml">Size</div>
+                <div class="mv">19.1 mm</div>
               </div>
             </div>
-            <p style="font-size:10px;color:var(--graphite);line-height:1.5;margin-top:8px;">Border definition has shifted slightly since 28 March. Consider a follow-up photo in seven days.</p>
           </div>
           <div class="phone-nav">
             <div class="p-nav-item">
@@ -653,16 +1016,16 @@
               Today
             </div>
             <div class="p-nav-item active">
-              <div class="p-nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg></div>
+              <div class="p-nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></svg></div>
               Spots
             </div>
             <div class="p-nav-item">
-              <div class="p-nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M9 3v4M15 3v4"/></svg></div>
-              History
+              <div class="p-nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+              Learn
             </div>
             <div class="p-nav-item">
-              <div class="p-nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg></div>
-              Learn
+              <div class="p-nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+              Settings
             </div>
           </div>
         </div>
@@ -672,37 +1035,269 @@
   </div>
 </section>
 
-<!-- ============ FEATURES ============ -->
-<section class="features">
+<!-- ============ FEATURE: CAMERA OVERLAY ============ -->
+<section class="feature-showcase">
   <div class="container">
-    <div class="features-header">
-      <span class="micro">What Freckle does</span>
-      <h2 class="h1" style="margin-top: 12px;">Grown-up work for your skin.</h2>
+    <div class="feature-showcase-text">
+      <span class="micro">Photo capture</span>
+      <h2>Line up your shots.<br>Every single time.</h2>
+      <p>When you take a follow-up photo, Freckle overlays the previous image at adjustable opacity so you can match the exact angle and distance. Consistent photos make real changes easier to spot.</p>
+      <ul class="feature-detail-list">
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          Adjustable overlay opacity (10 &ndash; 70%)
+        </li>
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg>
+          Place a reference coin for real-world scale
+        </li>
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          Flash, zoom, and flip controls built in
+        </li>
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          Or pick from your gallery instead
+        </li>
+      </ul>
     </div>
-
-    <div class="feature-grid">
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="4"/></svg>
+    <div class="feature-showcase-phones">
+      <!-- Camera with overlay -->
+      <div class="phone">
+        <div class="phone-screen p-cam-bg" style="height: 370px;">
+          <div class="phone-status" style="color:#ccc;background:rgba(0,0,0,0.3);position:relative;z-index:2;">
+            <span>9:41</span>
+            <div class="ps-right">
+              <svg width="12" height="9" viewBox="0 0 14 10" fill="currentColor" style="color:#ccc"><path d="M0 8h2v2H0zm4-2h2v4H4zm4-3h2v7H8zm4-3h2v10h-2z"/></svg>
+              <svg width="12" height="9" viewBox="0 0 14 10" fill="none" stroke="#ccc" stroke-width="1.2"><rect x="0.5" y="2" width="11" height="6" rx="1.5"/><rect x="12" y="4" width="1.5" height="2"/></svg>
+            </div>
+          </div>
+          <div class="p-cam-body">
+            <div class="p-cam-viewfinder">
+              <div class="p-cam-mole"></div>
+              <div class="p-cam-coin"></div>
+            </div>
+            <div class="p-cam-overlay">
+              <div class="p-cam-overlay-mole"></div>
+            </div>
+            <div class="p-cam-controls-top">
+              <div class="p-cam-row">
+                <span>Flash</span>
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#ddd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              </div>
+              <div class="p-cam-row">
+                <span style="width:36px;">Zoom: 1.0x</span>
+                <div class="p-cam-slider-track">
+                  <div class="p-cam-slider-fill" style="width:10%;"></div>
+                  <div class="p-cam-slider-thumb" style="left:8%;"></div>
+                </div>
+              </div>
+              <div class="p-cam-row">
+                <span>Show overlay</span>
+                <div class="p-cam-toggle"></div>
+              </div>
+              <div class="p-cam-row">
+                <span style="width:36px;">Opacity: 30%</span>
+                <div class="p-cam-slider-track">
+                  <div class="p-cam-slider-fill"></div>
+                  <div class="p-cam-slider-thumb"></div>
+                </div>
+              </div>
+            </div>
+            <div class="p-cam-bottom">
+              <div class="p-cam-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M8 3H3v5M3 16v5h5M21 16v5h-5M7 12a5 5 0 0 1 10 0"/></svg></div>
+              <div class="p-cam-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div>
+              <div class="p-cam-btn-capture"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="4"/></svg></div>
+              <div class="p-cam-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            </div>
+          </div>
         </div>
-        <h3>Photo-based tracking</h3>
-        <p>Photograph moles, spots, and skin changes at consistent intervals. Compare images side by side across weeks and months to see what, if anything, has shifted.</p>
       </div>
+    </div>
+  </div>
+</section>
 
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M9 3v4M15 3v4"/></svg>
+<!-- ============ FEATURE: BODY LOCATION + TRACKING ============ -->
+<section class="feature-showcase reverse">
+  <div class="container">
+    <div class="feature-showcase-text">
+      <span class="micro">Organised tracking</span>
+      <h2>60+ body locations.<br>Zero guesswork.</h2>
+      <p>Pick from a categorised list of over sixty predefined body areas, or type your own. Each spot gets its own timeline of photos, measurements, and notes so nothing gets mixed up.</p>
+      <ul class="feature-detail-list">
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Head, face, torso, arms, legs, hands, and feet
+        </li>
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 1 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
+          Custom locations for anywhere you need
+        </li>
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M9 3v4M15 3v4"/></svg>
+          Configurable reminders from daily to quarterly
+        </li>
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          Full photo timeline with date and notes per image
+        </li>
+      </ul>
+    </div>
+    <div class="feature-showcase-phones">
+      <!-- Body location picker -->
+      <div class="phone">
+        <div class="phone-screen" style="height: 370px;">
+          <div class="phone-status">
+            <span>9:41</span>
+            <div class="ps-right">
+              <svg width="12" height="9" viewBox="0 0 14 10" fill="currentColor"><path d="M0 8h2v2H0zm4-2h2v4H4zm4-3h2v7H8zm4-3h2v10h-2z"/></svg>
+              <svg width="12" height="9" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="0.5" y="2" width="11" height="6" rx="1.5"/><rect x="12" y="4" width="1.5" height="2"/></svg>
+            </div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 16px 4px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink)"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            <span style="font-size:11px;font-weight:500;color:var(--ink);">Where is it?</span>
+            <span style="font-size:9px;color:var(--clay);">Cancel</span>
+          </div>
+          <div class="phone-body" style="padding-top:8px;">
+            <div class="p-loc-selected">
+              <span class="p-loc-selected-name">Left Cheek</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--clay)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            </div>
+            <div style="font-size:9px;font-weight:500;color:var(--ink);margin-bottom:6px;">Select a body area:</div>
+            <div class="p-loc-chips">
+              <span class="p-loc-chip p-loc-chip-active">Head / Face</span>
+              <span class="p-loc-chip">Neck</span>
+              <span class="p-loc-chip">Torso</span>
+              <span class="p-loc-chip">Arms</span>
+              <span class="p-loc-chip">Legs</span>
+              <span class="p-loc-chip">Hands</span>
+            </div>
+            <div class="p-loc-item">Forehead</div>
+            <div class="p-loc-item p-loc-item-selected">Left Cheek ✓</div>
+            <div class="p-loc-item">Right Cheek</div>
+            <div class="p-loc-item">Nose</div>
+            <div class="p-loc-item">Chin</div>
+          </div>
         </div>
-        <h3>Measurements and history</h3>
-        <p>Log width, height, and body location for each spot. Freckle tracks when you last checked in and reminds you when it's time to take another look.</p>
       </div>
+    </div>
+  </div>
+</section>
 
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+<!-- ============ FEATURE: LEARN & MANAGE ============ -->
+<section class="feature-showcase">
+  <div class="container">
+    <div class="feature-showcase-text">
+      <span class="micro">Education &amp; tools</span>
+      <h2>Learn about your skin.<br>Stay in control.</h2>
+      <p>Built-in sun safety education from the American Academy of Dermatology and the EPA helps you understand what to look for. Export a PDF report for your dermatologist, or back up everything to keep your data safe.</p>
+      <ul class="feature-detail-list">
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          ABCDEs of melanoma carousel with illustrations
+        </li>
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+          One-tap PDF reports for your doctor
+        </li>
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg>
+          Full backup and restore of all data and photos
+        </li>
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          UV index and SPF usage guides
+        </li>
+      </ul>
+    </div>
+    <div class="feature-showcase-phones">
+      <!-- Learn screen -->
+      <div class="phone phone-sm" style="transform:translateY(24px);">
+        <div class="phone-screen" style="height: 340px;">
+          <div class="phone-status">
+            <span>9:41</span>
+            <div class="ps-right">
+              <svg width="12" height="9" viewBox="0 0 14 10" fill="currentColor"><path d="M0 8h2v2H0zm4-2h2v4H4zm4-3h2v7H8zm4-3h2v10h-2z"/></svg>
+              <svg width="12" height="9" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="0.5" y="2" width="11" height="6" rx="1.5"/><rect x="12" y="4" width="1.5" height="2"/></svg>
+            </div>
+          </div>
+          <div class="phone-body">
+            <div class="p-learn-header">
+              <h3>Sun Safety Education</h3>
+              <p>Resources to help you understand and protect your skin.</p>
+              <div class="p-learn-disclaimer">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;color:var(--slate)"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                <span>Freckle is not a medical app. Always consult healthcare professionals.</span>
+              </div>
+            </div>
+            <div class="p-abcde-card">
+              <h4>ABCDEs of Melanoma</h4>
+              <div class="p-abcde-visual"><span class="p-abcde-letter">A</span></div>
+              <div style="font-size:9px;font-weight:600;color:var(--ink);margin-bottom:2px;">Asymmetry</div>
+              <div class="p-abcde-desc">One half of the mole doesn't match the other half.</div>
+              <div class="p-abcde-dots">
+                <div class="p-abcde-dot p-abcde-dot-active"></div>
+                <div class="p-abcde-dot"></div><div class="p-abcde-dot"></div><div class="p-abcde-dot"></div><div class="p-abcde-dot"></div>
+              </div>
+            </div>
+            <div style="font-size:8px;font-style:italic;color:var(--slate);">Source: American Academy of Dermatology</div>
+          </div>
+          <div class="phone-nav">
+            <div class="p-nav-item"><div class="p-nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9"/><path d="M5 10v10h14V10"/></svg></div>Today</div>
+            <div class="p-nav-item"><div class="p-nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></svg></div>Spots</div>
+            <div class="p-nav-item active"><div class="p-nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>Learn</div>
+            <div class="p-nav-item"><div class="p-nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>Settings</div>
+          </div>
         </div>
-        <h3>Stays on your device</h3>
-        <p>No account required. No internet connection needed. Your photos, notes, and measurement history live in your phone's private storage and nowhere else.</p>
+      </div>
+      <!-- Settings screen -->
+      <div class="phone">
+        <div class="phone-screen" style="height: 340px;">
+          <div class="phone-status">
+            <span>9:41</span>
+            <div class="ps-right">
+              <svg width="12" height="9" viewBox="0 0 14 10" fill="currentColor"><path d="M0 8h2v2H0zm4-2h2v4H4zm4-3h2v7H8zm4-3h2v10h-2z"/></svg>
+              <svg width="12" height="9" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="0.5" y="2" width="11" height="6" rx="1.5"/><rect x="12" y="4" width="1.5" height="2"/></svg>
+            </div>
+          </div>
+          <div class="phone-body">
+            <div class="p-settings-section">
+              <div class="p-settings-label">Appearance</div>
+              <div class="p-settings-card">
+                <div class="p-settings-row"><div><div>Dark Theme</div><div class="p-settings-sub">Disabled</div></div><div class="p-toggle p-toggle-off"></div></div>
+              </div>
+            </div>
+            <div class="p-settings-section">
+              <div class="p-settings-label">PDF Report</div>
+              <div class="p-settings-card">
+                <div style="font-size:8px;color:var(--graphite);line-height:1.4;margin-bottom:4px;">Generate a PDF report to share with your dermatologist.</div>
+                <div class="p-settings-btn">Export PDF Report</div>
+              </div>
+            </div>
+            <div class="p-settings-section">
+              <div class="p-settings-label">Backup &amp; Restore</div>
+              <div class="p-settings-card">
+                <div style="font-size:8px;color:var(--graphite);line-height:1.4;margin-bottom:4px;">Export your data to backup all freckles and photos.</div>
+                <div class="p-settings-btn">Export Data</div>
+                <div class="p-settings-btn-outline">Import Data</div>
+              </div>
+            </div>
+            <div class="p-settings-section">
+              <div class="p-settings-label">Legal &amp; About</div>
+              <div class="p-settings-card">
+                <div class="p-settings-btn-outline">Privacy Policy</div>
+                <div class="p-settings-btn-outline">Terms &amp; Conditions</div>
+              </div>
+            </div>
+          </div>
+          <div class="phone-nav">
+            <div class="p-nav-item"><div class="p-nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9"/><path d="M5 10v10h14V10"/></svg></div>Today</div>
+            <div class="p-nav-item"><div class="p-nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></svg></div>Spots</div>
+            <div class="p-nav-item"><div class="p-nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>Learn</div>
+            <div class="p-nav-item active"><div class="p-nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>Settings</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

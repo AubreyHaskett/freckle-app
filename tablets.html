@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Freckle — Tablet Mockups</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { background: transparent; padding: 60px; }
+
+    /* ---- Tablet frame ---------------------------------------- */
+    .tablet {
+      background: var(--ink);
+      padding: 10px;
+      border-radius: 28px;
+      box-shadow: 0 24px 80px rgba(31,27,23,0.2);
+      display: inline-block;
+      margin: 40px;
+      vertical-align: top;
+    }
+
+    .tablet-screen {
+      background: var(--bone);
+      border-radius: 20px;
+      overflow: hidden;
+      width: 480px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tablet-landscape .tablet-screen {
+      width: 640px;
+    }
+
+    /* ---- Status bar ------------------------------------------ */
+    .t-status {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 24px 8px;
+      font-size: 13px;
+      font-family: var(--mono);
+      font-weight: 500;
+      color: var(--ink);
+      flex-shrink: 0;
+    }
+
+    .t-status .ps-right { display: flex; gap: 6px; align-items: center; }
+
+    /* ---- Body ------------------------------------------------ */
+    .t-body { flex: 1; padding: 16px 24px 12px; overflow: hidden; }
+
+    /* ---- Bottom nav ------------------------------------------ */
+    .t-nav {
+      background: var(--paper);
+      border-top: 1px solid var(--hairline);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      padding: 8px 0 18px;
+      flex-shrink: 0;
+    }
+
+    .t-nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 4px;
+      font-size: 12px;
+      color: var(--slate);
+      font-weight: 500;
+    }
+
+    .t-nav-item.active { color: var(--clay); }
+
+    .t-nav-icon { width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; }
+
+    /* ---- Shared SVGs ----------------------------------------- */
+    /* Nav icons reused from phones but at 18px */
+
+    /* ---- Today screen ---------------------------------------- */
+    .t-greeting .micro { margin-bottom: 4px; font-size: 13px; }
+    .t-greeting h2 { font-family: var(--serif); font-size: 28px; font-weight: 500; font-variation-settings: "opsz" 36; margin-bottom: 20px; }
+
+    .t-summary {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--hairline);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .t-stat {
+      background: var(--paper);
+      padding: 16px;
+      text-align: center;
+    }
+
+    .t-stat .tn { font-family: var(--serif); font-size: 28px; font-weight: 500; color: var(--ink); font-variation-settings: "opsz" 80; }
+    .t-stat .tl { font-family: var(--mono); font-size: 10px; color: var(--slate); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 2px; }
+
+    .t-section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .t-section-head .micro { font-size: 12px; }
+    .t-section-head a { font-size: 13px; color: var(--clay); font-weight: 500; }
+
+    .t-spot {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px;
+      background: var(--paper);
+      border: 1px solid var(--hairline);
+      border-radius: 12px;
+      margin-bottom: 8px;
+    }
+
+    .t-thumb {
+      width: 48px; height: 48px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--clay-tint), var(--clay-light));
+      flex-shrink: 0;
+    }
+
+    .t-thumb-2 { background: linear-gradient(135deg, var(--sage-light), var(--stone)); }
+
+    .t-spot-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+    .t-spot-when { font-family: var(--mono); font-size: 10px; color: var(--slate); letter-spacing: 0.04em; text-transform: uppercase; margin-top: 2px; }
+
+    .t-tag {
+      margin-left: auto;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+
+    .t-tag-watch { background: var(--amber-light); color: #6E4A0F; }
+    .t-tag-stable { background: var(--sage-light); color: #4F5C3F; }
+
+    /* ---- Detail screen --------------------------------------- */
+    .t-gallery {
+      display: flex;
+      gap: 10px;
+      margin: 0 -24px 12px;
+      padding: 0 24px;
+      overflow: hidden;
+    }
+
+    .t-gallery-card {
+      flex-shrink: 0;
+      width: 100px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 2px solid transparent;
+      background: var(--paper);
+      box-shadow: 0 2px 8px rgba(31,27,23,0.08);
+    }
+
+    .t-gallery-active { border-color: var(--clay); }
+
+    .t-gallery-img {
+      width: 100%;
+      height: 80px;
+      background: linear-gradient(135deg, var(--clay-tint), var(--clay-light));
+    }
+
+    .t-gallery-img-2 { background: linear-gradient(135deg, var(--stone), var(--shell)); }
+    .t-gallery-img-3 { background: linear-gradient(135deg, var(--sage-light), var(--stone)); }
+
+    .t-gallery-date {
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--slate);
+      text-align: center;
+      padding: 4px;
+      letter-spacing: 0.04em;
+    }
+
+    .t-gallery-peek { opacity: 0.5; }
+
+    .t-photo-meta {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--slate);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .t-detail-title {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 500;
+      font-variation-settings: "opsz" 36;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .t-detail-sub {
+      font-size: 13px;
+      color: var(--graphite);
+      margin-bottom: 12px;
+    }
+
+    .t-measures {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--hairline);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 16px;
+    }
+
+    .t-measure {
+      background: var(--paper);
+      padding: 12px;
+    }
+
+    .t-measure .ml { font-family: var(--mono); font-size: 10px; color: var(--slate); letter-spacing: 0.06em; text-transform: uppercase; }
+    .t-measure .mv { font-family: var(--serif); font-size: 20px; color: var(--ink); margin-top: 2px; font-weight: 500; font-variation-settings: "opsz" 36; }
+
+    /* ---- Learn screen ---------------------------------------- */
+    .t-learn-header h3 {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 500;
+      font-variation-settings: "opsz" 36;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .t-learn-header p {
+      font-size: 13px;
+      color: var(--graphite);
+      margin-bottom: 12px;
+    }
+
+    .t-learn-disclaimer {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      font-size: 11px;
+      color: var(--slate);
+      line-height: 1.5;
+      background: var(--stone);
+      padding: 10px 14px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .t-abcde-card {
+      background: var(--paper);
+      border: 1px solid var(--hairline);
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 12px;
+    }
+
+    .t-abcde-card h4 {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-weight: 500;
+      font-variation-settings: "opsz" 36;
+      color: var(--ink);
+      margin-bottom: 14px;
+    }
+
+    .t-abcde-visual {
+      width: 100%;
+      height: 100px;
+      background: linear-gradient(135deg, var(--clay-tint), var(--amber-light));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+
+    .t-abcde-letter {
+      font-family: var(--serif);
+      font-size: 48px;
+      font-weight: 600;
+      color: var(--clay-deep);
+      font-variation-settings: "opsz" 144;
+    }
+
+    .t-abcde-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .t-abcde-desc {
+      font-size: 13px;
+      color: var(--graphite);
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+
+    .t-abcde-dots {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+    }
+
+    .t-abcde-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--shell);
+    }
+
+    .t-abcde-dot-active { background: var(--clay); }
+
+    /* ---- Settings screen ------------------------------------- */
+    .t-settings-section { margin-bottom: 18px; }
+
+    .t-settings-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--slate);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .t-settings-card {
+      background: var(--paper);
+      border: 1px solid var(--hairline);
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+
+    .t-settings-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      color: var(--ink);
+    }
+
+    .t-settings-sub { font-size: 12px; color: var(--slate); margin-top: 1px; }
+
+    .t-toggle {
+      width: 40px; height: 22px;
+      border-radius: 11px;
+      position: relative;
+    }
+
+    .t-toggle::after {
+      content: '';
+      position: absolute;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: white;
+      top: 2px;
+      transition: left 150ms;
+    }
+
+    .t-toggle-off { background: var(--mist); }
+    .t-toggle-off::after { left: 2px; }
+
+    .t-settings-btn {
+      background: var(--clay);
+      color: white;
+      font-size: 13px;
+      font-weight: 500;
+      text-align: center;
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 8px;
+    }
+
+    .t-settings-btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 500;
+      text-align: center;
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 8px;
+    }
+
+    .t-settings-desc {
+      font-size: 12px;
+      color: var(--graphite);
+      line-height: 1.5;
+      margin-bottom: 4px;
+    }
+
+    /* ---- Camera screen --------------------------------------- */
+    .t-cam-bg {
+      background: #1a1a1a;
+    }
+
+    .t-cam-body {
+      flex: 1;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .t-cam-viewfinder {
+      flex: 1;
+      position: relative;
+      margin: 8px 16px;
+      border: 1px dashed rgba(255,255,255,0.2);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .t-cam-mole {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #8B5E3C 40%, #6B4226 100%);
+      box-shadow: 0 0 8px rgba(0,0,0,0.3);
+    }
+
+    .t-cam-coin {
+      position: absolute;
+      bottom: 16px;
+      right: 20px;
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #D4A574, #B8860B);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .t-cam-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(139, 94, 60, 0.08);
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .t-cam-overlay-mole {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(139,94,60,0.4) 40%, rgba(107,66,38,0.3) 100%);
+      border: 1px dashed rgba(181,98,63,0.5);
+      transform: translate(4px, -3px);
+    }
+
+    .t-cam-controls-top {
+      background: rgba(30,30,30,0.7);
+      padding: 12px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .t-cam-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      color: #ccc;
+    }
+
+    .t-cam-slider-track {
+      flex: 1;
+      height: 4px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 2px;
+      position: relative;
+    }
+
+    .t-cam-slider-fill {
+      height: 100%;
+      background: var(--clay);
+      border-radius: 2px;
+      width: 30%;
+    }
+
+    .t-cam-slider-thumb {
+      position: absolute;
+      top: -4px;
+      left: 28%;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    }
+
+    .t-cam-toggle {
+      width: 36px; height: 20px;
+      border-radius: 10px;
+      background: var(--clay);
+      position: relative;
+    }
+
+    .t-cam-toggle::after {
+      content: '';
+      position: absolute;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: white;
+      top: 2px;
+      right: 2px;
+    }
+
+    .t-cam-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 14px 0;
+    }
+
+    .t-cam-btn {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .t-cam-btn-capture {
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      background: white;
+      border: 4px solid rgba(255,255,255,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ---- Body location screen -------------------------------- */
+    .t-loc-selected {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--clay-tint);
+      padding: 12px 16px;
+      border-radius: 10px;
+      margin-bottom: 16px;
+      border: 1px solid var(--clay-light);
+    }
+
+    .t-loc-selected-name {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--clay-deep);
+    }
+
+    .t-loc-chips {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .t-loc-chip {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--stone);
+      color: var(--graphite);
+    }
+
+    .t-loc-chip-active {
+      background: var(--clay);
+      color: white;
+    }
+
+    .t-loc-item {
+      padding: 12px 16px;
+      font-size: 14px;
+      color: var(--ink);
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .t-loc-item-selected {
+      color: var(--clay);
+      font-weight: 500;
+      background: var(--clay-tint);
+      border-radius: 8px;
+      border-bottom-color: transparent;
+    }
+
+    .t-loc-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============ TODAY ============ -->
+<div class="tablet" id="tablet-today">
+  <div class="tablet-screen" style="height: 680px;">
+    <div class="t-status">
+      <span>9:41</span>
+      <div class="ps-right">
+        <svg width="16" height="12" viewBox="0 0 14 10" fill="currentColor"><path d="M0 8h2v2H0zm4-2h2v4H4zm4-3h2v7H8zm4-3h2v10h-2z"/></svg>
+        <svg width="16" height="12" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="0.5" y="2" width="11" height="6" rx="1.5"/><rect x="12" y="4" width="1.5" height="2"/></svg>
+      </div>
+    </div>
+    <div class="t-body">
+      <div class="t-greeting">
+        <div class="micro">Sunday, 4 May</div>
+        <h2>Good morning.</h2>
+      </div>
+      <div class="t-summary">
+        <div class="t-stat"><div class="tn">8</div><div class="tl">Tracked spots</div></div>
+        <div class="t-stat"><div class="tn">2</div><div class="tl">Due check-in</div></div>
+        <div class="t-stat"><div class="tn">42</div><div class="tl">Total photos</div></div>
+      </div>
+      <div class="t-section-head">
+        <span class="micro">Due for a check</span>
+        <a href="#">See all</a>
+      </div>
+      <div class="t-spot">
+        <div class="t-thumb"></div>
+        <div>
+          <div class="t-spot-name">Mole, upper back</div>
+          <div class="t-spot-when">DUE TODAY · 30 DAYS</div>
+        </div>
+        <span class="t-tag t-tag-watch">Watch</span>
+      </div>
+      <div class="t-spot">
+        <div class="t-thumb t-thumb-2"></div>
+        <div>
+          <div class="t-spot-name">Sun spot, R cheek</div>
+          <div class="t-spot-when">DUE IN 2 DAYS</div>
+        </div>
+        <span class="t-tag t-tag-stable">Stable</span>
+      </div>
+      <div class="t-spot">
+        <div class="t-thumb"></div>
+        <div>
+          <div class="t-spot-name">Freckle, left forearm</div>
+          <div class="t-spot-when">CHECKED 5 DAYS AGO</div>
+        </div>
+        <span class="t-tag t-tag-stable">Stable</span>
+      </div>
+      <div class="t-spot">
+        <div class="t-thumb t-thumb-2"></div>
+        <div>
+          <div class="t-spot-name">Mark, right shoulder</div>
+          <div class="t-spot-when">DUE IN 12 DAYS</div>
+        </div>
+        <span class="t-tag t-tag-stable">Stable</span>
+      </div>
+    </div>
+    <div class="t-nav">
+      <div class="t-nav-item active">
+        <div class="t-nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9"/><path d="M5 10v10h14V10"/></svg></div>
+        Today
+      </div>
+      <div class="t-nav-item">
+        <div class="t-nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></svg></div>
+        Spots
+      </div>
+      <div class="t-nav-item">
+        <div class="t-nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+        Learn
+      </div>
+      <div class="t-nav-item">
+        <div class="t-nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+        Settings
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SPOT DETAIL ============ -->
+<div class="tablet" id="tablet-detail">
+  <div class="tablet-screen" style="height: 680px;">
+    <div class="t-status">
+      <span>9:41</span>
+      <div class="ps-right">
+        <svg width="16" height="12" viewBox="0 0 14 10" fill="currentColor"><path d="M0 8h2v2H0zm4-2h2v4H4zm4-3h2v7H8zm4-3h2v10h-2z"/></svg>
+        <svg width="16" height="12" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="0.5" y="2" width="11" height="6" rx="1.5"/><rect x="12" y="4" width="1.5" height="2"/></svg>
+      </div>
+    </div>
+    <div class="t-body">
+      <div style="display:flex; justify-content: space-between; margin-bottom: 14px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink)"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink)"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+      </div>
+      <div class="t-gallery">
+        <div class="t-gallery-card t-gallery-active">
+          <div class="t-gallery-img"></div>
+          <div class="t-gallery-date">04 May 2026</div>
+        </div>
+        <div class="t-gallery-card">
+          <div class="t-gallery-img t-gallery-img-2"></div>
+          <div class="t-gallery-date">28 Mar 2026</div>
+        </div>
+        <div class="t-gallery-card">
+          <div class="t-gallery-img t-gallery-img-3"></div>
+          <div class="t-gallery-date">14 Jan 2026</div>
+        </div>
+        <div class="t-gallery-card t-gallery-peek">
+          <div class="t-gallery-img"></div>
+          <div class="t-gallery-date">01 Dec 2025</div>
+        </div>
+      </div>
+      <div class="t-photo-meta">
+        <span>04 MAY 2026 · 09:32</span>
+        <span>PHOTO 6 OF 6</span>
+      </div>
+      <div class="t-detail-title">Mole, upper left back</div>
+      <div class="t-detail-sub">First tracked 14 January 2026</div>
+      <span class="t-tag t-tag-watch" style="display:inline-block;margin-bottom:16px;">● Worth watching</span>
+      <div class="t-measures">
+        <div class="t-measure">
+          <div class="ml">Reference</div>
+          <div class="mv">US Penny</div>
+        </div>
+        <div class="t-measure">
+          <div class="ml">Size</div>
+          <div class="mv">19.1 mm</div>
+        </div>
+      </div>
+    </div>
+    <div class="t-nav">
+      <div class="t-nav-item">
+        <div class="t-nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9"/><path d="M5 10v10h14V10"/></svg></div>
+        Today
+      </div>
+      <div class="t-nav-item active">
+        <div class="t-nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></svg></div>
+        Spots
+      </div>
+      <div class="t-nav-item">
+        <div class="t-nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+        Learn
+      </div>
+      <div class="t-nav-item">
+        <div class="t-nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+        Settings
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ LEARN ============ -->
+<div class="tablet" id="tablet-learn">
+  <div class="tablet-screen" style="height: 680px;">
+    <div class="t-status">
+      <span>9:41</span>
+      <div class="ps-right">
+        <svg width="16" height="12" viewBox="0 0 14 10" fill="currentColor"><path d="M0 8h2v2H0zm4-2h2v4H4zm4-3h2v7H8zm4-3h2v10h-2z"/></svg>
+        <svg width="16" height="12" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="0.5" y="2" width="11" height="6" rx="1.5"/><rect x="12" y="4" width="1.5" height="2"/></svg>
+      </div>
+    </div>
+    <div class="t-body">
+      <div class="t-learn-header">
+        <h3>Sun Safety Education</h3>
+        <p>Resources to help you understand and protect your skin.</p>
+        <div class="t-learn-disclaimer">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;color:var(--slate)"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          <span>Freckle is not a medical app. Always consult healthcare professionals for medical advice.</span>
+        </div>
+      </div>
+      <div class="t-abcde-card">
+        <h4>ABCDEs of Melanoma</h4>
+        <div class="t-abcde-visual"><span class="t-abcde-letter">A</span></div>
+        <div class="t-abcde-title">Asymmetry</div>
+        <div class="t-abcde-desc">One half of the mole doesn't match the other half in size, shape, or color.</div>
+        <div class="t-abcde-dots">
+          <div class="t-abcde-dot t-abcde-dot-active"></div>
+          <div class="t-abcde-dot"></div><div class="t-abcde-dot"></div><div class="t-abcde-dot"></div><div class="t-abcde-dot"></div>
+        </div>
+      </div>
+      <div style="font-size:12px;font-style:italic;color:var(--slate);">Source: American Academy of Dermatology</div>
+    </div>
+    <div class="t-nav">
+      <div class="t-nav-item"><div class="t-nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9"/><path d="M5 10v10h14V10"/></svg></div>Today</div>
+      <div class="t-nav-item"><div class="t-nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></svg></div>Spots</div>
+      <div class="t-nav-item active"><div class="t-nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>Learn</div>
+      <div class="t-nav-item"><div class="t-nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>Settings</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SETTINGS ============ -->
+<div class="tablet" id="tablet-settings">
+  <div class="tablet-screen" style="height: 680px;">
+    <div class="t-status">
+      <span>9:41</span>
+      <div class="ps-right">
+        <svg width="16" height="12" viewBox="0 0 14 10" fill="currentColor"><path d="M0 8h2v2H0zm4-2h2v4H4zm4-3h2v7H8zm4-3h2v10h-2z"/></svg>
+        <svg width="16" height="12" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="0.5" y="2" width="11" height="6" rx="1.5"/><rect x="12" y="4" width="1.5" height="2"/></svg>
+      </div>
+    </div>
+    <div class="t-body">
+      <div class="t-settings-section">
+        <div class="t-settings-label">Appearance</div>
+        <div class="t-settings-card">
+          <div class="t-settings-row"><div><div>Dark Theme</div><div class="t-settings-sub">Disabled</div></div><div class="t-toggle t-toggle-off"></div></div>
+        </div>
+      </div>
+      <div class="t-settings-section">
+        <div class="t-settings-label">PDF Report</div>
+        <div class="t-settings-card">
+          <div class="t-settings-desc">Generate a PDF report to share with your dermatologist.</div>
+          <div class="t-settings-btn">Export PDF Report</div>
+        </div>
+      </div>
+      <div class="t-settings-section">
+        <div class="t-settings-label">Backup &amp; Restore</div>
+        <div class="t-settings-card">
+          <div class="t-settings-desc">Export your data to backup all freckles and photos.</div>
+          <div class="t-settings-btn">Export Data</div>
+          <div class="t-settings-btn-outline">Import Data</div>
+        </div>
+      </div>
+      <div class="t-settings-section">
+        <div class="t-settings-label">Legal &amp; About</div>
+        <div class="t-settings-card">
+          <div class="t-settings-btn-outline">Privacy Policy</div>
+          <div class="t-settings-btn-outline">Terms &amp; Conditions</div>
+        </div>
+      </div>
+    </div>
+    <div class="t-nav">
+      <div class="t-nav-item"><div class="t-nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9"/><path d="M5 10v10h14V10"/></svg></div>Today</div>
+      <div class="t-nav-item"><div class="t-nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></svg></div>Spots</div>
+      <div class="t-nav-item"><div class="t-nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>Learn</div>
+      <div class="t-nav-item active"><div class="t-nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>Settings</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CAMERA OVERLAY ============ -->
+<div class="tablet" id="tablet-camera">
+  <div class="tablet-screen t-cam-bg" style="height: 680px;">
+    <div class="t-status" style="color:#ccc;background:rgba(0,0,0,0.3);position:relative;z-index:2;">
+      <span>9:41</span>
+      <div class="ps-right">
+        <svg width="16" height="12" viewBox="0 0 14 10" fill="currentColor" style="color:#ccc"><path d="M0 8h2v2H0zm4-2h2v4H4zm4-3h2v7H8zm4-3h2v10h-2z"/></svg>
+        <svg width="16" height="12" viewBox="0 0 14 10" fill="none" stroke="#ccc" stroke-width="1.2"><rect x="0.5" y="2" width="11" height="6" rx="1.5"/><rect x="12" y="4" width="1.5" height="2"/></svg>
+      </div>
+    </div>
+    <div class="t-cam-body">
+      <div class="t-cam-viewfinder">
+        <div class="t-cam-mole"></div>
+        <div class="t-cam-coin"></div>
+      </div>
+      <div class="t-cam-overlay">
+        <div class="t-cam-overlay-mole"></div>
+      </div>
+      <div class="t-cam-controls-top">
+        <div class="t-cam-row">
+          <span>Flash</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ddd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <div class="t-cam-row">
+          <span style="width:60px;">Zoom: 1.0x</span>
+          <div class="t-cam-slider-track">
+            <div class="t-cam-slider-fill" style="width:10%;"></div>
+            <div class="t-cam-slider-thumb" style="left:8%;"></div>
+          </div>
+        </div>
+        <div class="t-cam-row">
+          <span>Show overlay</span>
+          <div class="t-cam-toggle"></div>
+        </div>
+        <div class="t-cam-row">
+          <span style="width:60px;">Opacity: 30%</span>
+          <div class="t-cam-slider-track">
+            <div class="t-cam-slider-fill"></div>
+            <div class="t-cam-slider-thumb"></div>
+          </div>
+        </div>
+      </div>
+      <div class="t-cam-bottom">
+        <div class="t-cam-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M8 3H3v5M3 16v5h5M21 16v5h-5M7 12a5 5 0 0 1 10 0"/></svg></div>
+        <div class="t-cam-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div>
+        <div class="t-cam-btn-capture"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="4"/></svg></div>
+        <div class="t-cam-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ BODY LOCATION ============ -->
+<div class="tablet" id="tablet-body-location">
+  <div class="tablet-screen" style="height: 680px;">
+    <div class="t-status">
+      <span>9:41</span>
+      <div class="ps-right">
+        <svg width="16" height="12" viewBox="0 0 14 10" fill="currentColor"><path d="M0 8h2v2H0zm4-2h2v4H4zm4-3h2v7H8zm4-3h2v10h-2z"/></svg>
+        <svg width="16" height="12" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="0.5" y="2" width="11" height="6" rx="1.5"/><rect x="12" y="4" width="1.5" height="2"/></svg>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 24px 6px;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink)"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      <span style="font-size:15px;font-weight:500;color:var(--ink);">Where is it?</span>
+      <span style="font-size:13px;color:var(--clay);">Cancel</span>
+    </div>
+    <div class="t-body" style="padding-top:12px;">
+      <div class="t-loc-selected">
+        <span class="t-loc-selected-name">Left Cheek</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--clay)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+      </div>
+      <div class="t-loc-label">Select a body area:</div>
+      <div class="t-loc-chips">
+        <span class="t-loc-chip t-loc-chip-active">Head / Face</span>
+        <span class="t-loc-chip">Neck</span>
+        <span class="t-loc-chip">Torso</span>
+        <span class="t-loc-chip">Arms</span>
+        <span class="t-loc-chip">Legs</span>
+        <span class="t-loc-chip">Hands</span>
+        <span class="t-loc-chip">Feet</span>
+      </div>
+      <div class="t-loc-item">Forehead</div>
+      <div class="t-loc-item t-loc-item-selected">Left Cheek ✓</div>
+      <div class="t-loc-item">Right Cheek</div>
+      <div class="t-loc-item">Nose</div>
+      <div class="t-loc-item">Chin</div>
+      <div class="t-loc-item">Left Temple</div>
+      <div class="t-loc-item">Right Temple</div>
+      <div class="t-loc-item">Left Ear</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
