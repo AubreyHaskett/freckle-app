@@ -146,6 +146,9 @@ a {
 }
 
 .nav-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-family: var(--serif);
   font-size: 22px;
   font-weight: 500;
@@ -153,6 +156,12 @@ a {
   color: var(--ink);
   font-variation-settings: "opsz" 36;
   border: none;
+}
+
+.nav-logo-mark {
+  width: 24px;
+  height: 24px;
+  display: block;
 }
 
 .nav-links {
