@@ -356,7 +356,6 @@ const SCREENS = {
   camera: {
     height: 370,
     screenClass: 'p-cam-bg',
-    noDefaultScreen: true,
     html: `${statusBarDark}
       <div class="p-cam-body">
         <div class="p-cam-viewfinder"><div class="p-cam-mole"></div><div class="p-cam-coin">10¢</div></div>
@@ -635,11 +634,10 @@ TARGETS.forEach(target => {
   SCREEN_ORDER.forEach((screenKey, idx) => {
     const screen = SCREENS[screenKey];
     const copy = COPY[screenKey];
-    const isDark = screenKey === 'camera';
-    const frameClass = isDark ? 'frame-dark' : 'frame-light';
+    const frameClass = 'frame-light';
     const num = idx + 1;
 
-    const screenClass = screen.noDefaultScreen ? screen.screenClass : `phone-screen ${screen.screenClass || ''}`;
+    const screenClass = `phone-screen ${screen.screenClass || ''}`;
     const phoneHTML = `<div class="phone"><div class="${screenClass}" style="height:${screen.height}px;">${screen.html}</div></div>`;
 
     const frame = document.createElement('div');
