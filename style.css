@@ -179,6 +179,8 @@ a {
 }
 
 .nav-links a:hover { color: var(--clay); }
+.nav-links a.btn-primary { color: white; }
+.nav-links a.btn-primary:hover { color: white; }
 
 /* ---- Buttons ---------------------------------------------- */
 .btn {
@@ -323,6 +325,18 @@ a {
   color: var(--ink);
   margin-top: 40px;
   margin-bottom: 12px;
+}
+
+.prose-page h3 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  font-variation-settings: "opsz" 36;
+  color: var(--ink);
+  margin-top: 28px;
+  margin-bottom: 10px;
 }
 
 .prose-page p {

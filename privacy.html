@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy — Freckle</title>
-  <meta name="description" content="Freckle privacy policy. All data stays on your device. No accounts, no cloud, no tracking.">
+  <meta name="description" content="Freckle privacy policy. Your data stays under your control. No Freckle servers, no accounts, no tracking.">
   <link rel="canonical" href="https://freckle-app.com/privacy.html">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="style.css">
@@ -34,7 +34,7 @@
     <h1>Privacy Policy</h1>
     <p class="prose-updated">Last updated: May 2026</p>
 
-    <p>Freckle is a skin tracking application for Android. This policy describes what data the app handles, where it lives, and what it doesn't do. The short version: everything stays on your device, and Freckle has no server to send your data to.</p>
+    <p>Freckle is a skin tracking application for Android. This policy describes what data the app handles, where it lives, and what it doesn't do. The short version: your data stays under your control. Freckle has no server and never sees your photos, measurements, or skin profile. Optional Google Drive backup goes to your own account.</p>
 
     <h2>What Freckle stores</h2>
 
@@ -49,7 +49,7 @@
       <li>Check-in history and reminder preferences</li>
     </ul>
 
-    <p>None of this information is transmitted to Freckle or to any third party.</p>
+    <p>None of this information is transmitted to Freckle or to any third party. If you enable Google Drive backup, your data is sent directly from your device to your own Google account — Freckle never receives or processes it.</p>
 
     <h2>What Freckle does not do</h2>
 
@@ -57,18 +57,24 @@
 
     <ul>
       <li>Require you to create an account or provide any personal information</li>
-      <li>Connect to the internet or transmit any data to external servers</li>
+      <li>Operate a server or transmit any data to Freckle</li>
       <li>Include advertising, analytics, or third-party tracking SDKs</li>
       <li>Share your data with third parties, advertisers, or data brokers</li>
       <li>Use your photos to train machine learning models</li>
-      <li>Access any data outside the app's private storage on your device</li>
+      <li>Access any data outside the app's private storage on your device (other than your Google Drive if you enable backup)</li>
     </ul>
 
     <h2>Where your data lives</h2>
 
-    <p>All data is stored in Android's private app storage, which is accessible only to Freckle and is not readable by other apps without explicit permission. Freckle does not back up your data to Google Drive or any cloud service through its own mechanisms.</p>
+    <p>All data is stored in Android's private app storage, which is accessible only to Freckle and is not readable by other apps without explicit permission.</p>
 
-    <p>Your device may have its own backup settings — for example, Android's automatic app data backup to Google Drive. Whether this backup includes Freckle data depends on your device and backup settings. You can control this in your Android settings under "Backup."</p>
+    <h3>Google Drive backup</h3>
+
+    <p>Freckle offers an optional backup feature that saves your data to your own Google Drive account. This backup is initiated only when you choose to enable it. Your data travels directly from your device to Google Drive — it does not pass through any Freckle server. Freckle does not have access to your Google Drive or your backed-up data.</p>
+
+    <p>Use of Google Drive is governed by Google's own <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">privacy policy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noopener">terms of service</a>.</p>
+
+    <p>Your device may also have its own automatic backup settings. Whether Android's built-in backup includes Freckle data depends on your device settings. You can control this in your Android settings under "Backup."</p>
 
     <h2>Device permissions</h2>
 
@@ -77,6 +83,8 @@
     <ul>
       <li><strong>Camera</strong> — to photograph skin spots directly from within the app</li>
       <li><strong>Photos / Media storage</strong> — to import existing images from your device's photo library</li>
+      <li><strong>Internet access</strong> — to connect to Google Drive (if you enable backup) and to retrieve UV forecast data</li>
+      <li><strong>Location (approximate)</strong> — to provide UV forecasts for your area, if you enable this feature</li>
     </ul>
 
     <p>These permissions are used only within the app and only for the purposes described above. Freckle does not access your camera or photo library in the background.</p>
