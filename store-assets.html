@@ -635,7 +635,7 @@ TARGETS.forEach(target => {
   SCREEN_ORDER.forEach((screenKey, idx) => {
     const screen = SCREENS[screenKey];
     const copy = COPY[screenKey];
-    const isDark = screenKey === 'camera' || screenKey === 'refPlacement';
+    const isDark = screenKey === 'camera';
     const frameClass = isDark ? 'frame-dark' : 'frame-light';
     const num = idx + 1;
 
