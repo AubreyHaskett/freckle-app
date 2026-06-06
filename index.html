@@ -844,7 +844,17 @@
       .hero { padding: 56px 0 48px; }
       .privacy-section { padding: 56px 0; }
       .download-section { padding: 56px 0; }
-      .phone-sm { display: none; }
+      .phone-screen { width: 140px; }
+      .phone { padding: 5px; border-radius: 24px; }
+      .phone-screen { border-radius: 20px; }
+      .mockup-pair, .feature-showcase-phones { gap: 12px; }
+      .phone-sm { transform: translateY(16px); }
+    }
+    @media (max-width: 380px) {
+      .phone-screen { width: 120px; }
+      .phone { padding: 4px; border-radius: 20px; }
+      .phone-screen { border-radius: 16px; }
+      .mockup-pair, .feature-showcase-phones { gap: 8px; }
     }
   </style>
 </head>
@@ -1654,6 +1664,14 @@
                 <div style="display:flex;align-items:center;gap:6px;padding:3px 0;">
                   <div style="width:14px;height:14px;border-radius:50%;background:#B68250;border:1px solid var(--border);flex-shrink:0;"></div>
                   <span style="font-size:7px;color:var(--graphite);">Type IV · Rarely burns</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:6px;padding:3px 0;">
+                  <div style="width:14px;height:14px;border-radius:50%;background:#825C32;border:1px solid var(--border);flex-shrink:0;"></div>
+                  <span style="font-size:7px;color:var(--graphite);">Type V · Very rarely burns</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:6px;padding:3px 0;">
+                  <div style="width:14px;height:14px;border-radius:50%;background:#3B2212;border:1px solid var(--border);flex-shrink:0;"></div>
+                  <span style="font-size:7px;color:var(--graphite);">Type VI · Never burns</span>
                 </div>
               </div>
             </div>
