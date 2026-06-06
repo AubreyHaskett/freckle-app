@@ -59,7 +59,7 @@ html {
 
 body {
   font-family: var(--sans);
-  background: #EDE8E1;
+  background: var(--bone);
   color: var(--ink);
   line-height: 1.55;
   font-size: 16px;
