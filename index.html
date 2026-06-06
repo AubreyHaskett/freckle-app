@@ -844,17 +844,13 @@
       .hero { padding: 56px 0 48px; }
       .privacy-section { padding: 56px 0; }
       .download-section { padding: 56px 0; }
-      .phone-screen { width: 140px; }
-      .phone { padding: 5px; border-radius: 24px; }
-      .phone-screen { border-radius: 20px; }
-      .mockup-pair, .feature-showcase-phones { gap: 12px; }
-      .phone-sm { transform: translateY(16px); }
+      .phone { transform: scale(0.78); transform-origin: bottom center; margin: -20px -10px; }
+      .phone-sm { transform: scale(0.78) translateY(24px); transform-origin: bottom center; margin: -20px -10px; }
+      .mockup-pair, .feature-showcase-phones { gap: 0; }
     }
     @media (max-width: 380px) {
-      .phone-screen { width: 120px; }
-      .phone { padding: 4px; border-radius: 20px; }
-      .phone-screen { border-radius: 16px; }
-      .mockup-pair, .feature-showcase-phones { gap: 8px; }
+      .phone { transform: scale(0.65); margin: -30px -16px; }
+      .phone-sm { transform: scale(0.65) translateY(24px); margin: -30px -16px; }
     }
   </style>
 </head>
@@ -1935,9 +1931,12 @@
               <div class="p-settings-card">
                 <div class="p-settings-row"><div><div>Skin Type</div><div class="p-settings-sub">Type II · Light</div></div>
                   <div style="display:flex;gap:2px;">
-                    <div style="width:8px;height:8px;border-radius:50%;background:#F5DCC4;border:1px solid var(--border);"></div>
-                    <div style="width:8px;height:8px;border-radius:50%;background:#E8C9A8;border:1px solid var(--clay);"></div>
-                    <div style="width:8px;height:8px;border-radius:50%;background:#C8A07C;border:1px solid var(--border);"></div>
+                    <div style="width:8px;height:8px;border-radius:50%;background:#F4E2D2;border:1px solid var(--border);"></div>
+                    <div style="width:8px;height:8px;border-radius:50%;background:#E8C9A7;border:1px solid var(--clay);"></div>
+                    <div style="width:8px;height:8px;border-radius:50%;background:#D6A57B;border:1px solid var(--border);"></div>
+                    <div style="width:8px;height:8px;border-radius:50%;background:#B68250;border:1px solid var(--border);"></div>
+                    <div style="width:8px;height:8px;border-radius:50%;background:#825C32;border:1px solid var(--border);"></div>
+                    <div style="width:8px;height:8px;border-radius:50%;background:#3B2212;border:1px solid var(--border);"></div>
                   </div>
                 </div>
               </div>
