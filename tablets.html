@@ -8,8 +8,7 @@
   <style>
     body { background: transparent; padding: 60px; }
 
-    /* ---- Tablet frame ---------------------------------------- */
-    .tablet {
+        .tablet {
       background: var(--ink);
       padding: 10px;
       border-radius: 28px;
@@ -32,8 +31,7 @@
       width: 640px;
     }
 
-    /* ---- Status bar ------------------------------------------ */
-    .t-status {
+        .t-status {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -47,11 +45,9 @@
 
     .t-status .ps-right { display: flex; gap: 6px; align-items: center; }
 
-    /* ---- Body ------------------------------------------------ */
-    .t-body { flex: 1; padding: 16px 24px 12px; overflow: hidden; }
+        .t-body { flex: 1; padding: 16px 24px 12px; overflow: hidden; }
 
-    /* ---- Bottom nav ------------------------------------------ */
-    .t-nav {
+        .t-nav {
       background: var(--paper);
       border-top: 1px solid var(--hairline);
       display: grid;
@@ -75,11 +71,8 @@
 
     .t-nav-icon { width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; }
 
-    /* ---- Shared SVGs ----------------------------------------- */
-    /* Nav icons reused from phones but at 18px */
-
-    /* ---- Today screen ---------------------------------------- */
-    .t-greeting .micro { margin-bottom: 4px; font-size: 13px; }
+        
+        .t-greeting .micro { margin-bottom: 4px; font-size: 13px; }
     .t-greeting h2 { font-family: var(--serif); font-size: 28px; font-weight: 500; font-variation-settings: "opsz" 36; margin-bottom: 20px; }
 
     .t-summary {
@@ -145,8 +138,7 @@
     .t-tag-watch { background: var(--amber-light); color: #6E4A0F; }
     .t-tag-stable { background: var(--sage-light); color: #4F5C3F; }
 
-    /* ---- Detail screen --------------------------------------- */
-    .t-gallery {
+        .t-gallery {
       display: flex;
       gap: 10px;
       margin: 0 -24px 12px;
@@ -230,8 +222,7 @@
     .t-measure .ml { font-family: var(--mono); font-size: 10px; color: var(--slate); letter-spacing: 0.06em; text-transform: uppercase; }
     .t-measure .mv { font-family: var(--serif); font-size: 20px; color: var(--ink); margin-top: 2px; font-weight: 500; font-variation-settings: "opsz" 36; }
 
-    /* ---- Learn screen ---------------------------------------- */
-    .t-learn-header h3 {
+        .t-learn-header h3 {
       font-family: var(--serif);
       font-size: 22px;
       font-weight: 500;
@@ -323,8 +314,7 @@
 
     .t-abcde-dot-active { background: var(--clay); }
 
-    /* ---- Settings screen ------------------------------------- */
-    .t-settings-section { margin-bottom: 18px; }
+        .t-settings-section { margin-bottom: 18px; }
 
     .t-settings-label {
       font-family: var(--mono);
@@ -401,8 +391,7 @@
       margin-bottom: 4px;
     }
 
-    /* ---- Camera screen --------------------------------------- */
-    .t-cam-bg {
+        .t-cam-bg {
       background: #1a1a1a;
     }
 
@@ -544,8 +533,7 @@
       justify-content: center;
     }
 
-    /* ---- Body location screen -------------------------------- */
-    .t-loc-selected {
+        .t-loc-selected {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -608,7 +596,6 @@
 </head>
 <body>
 
-<!-- ============ TODAY ============ -->
 <div class="tablet" id="tablet-today">
   <div class="tablet-screen" style="height: 680px;">
     <div class="t-status">
@@ -686,7 +673,6 @@
   </div>
 </div>
 
-<!-- ============ SPOT DETAIL ============ -->
 <div class="tablet" id="tablet-detail">
   <div class="tablet-screen" style="height: 680px;">
     <div class="t-status">
@@ -758,7 +744,6 @@
   </div>
 </div>
 
-<!-- ============ LEARN ============ -->
 <div class="tablet" id="tablet-learn">
   <div class="tablet-screen" style="height: 680px;">
     <div class="t-status">
@@ -798,7 +783,6 @@
   </div>
 </div>
 
-<!-- ============ SETTINGS ============ -->
 <div class="tablet" id="tablet-settings">
   <div class="tablet-screen" style="height: 680px;">
     <div class="t-status">
@@ -847,7 +831,6 @@
   </div>
 </div>
 
-<!-- ============ CAMERA OVERLAY ============ -->
 <div class="tablet" id="tablet-camera">
   <div class="tablet-screen t-cam-bg" style="height: 680px;">
     <div class="t-status" style="color:#ccc;background:rgba(0,0,0,0.3);position:relative;z-index:2;">
@@ -899,7 +882,6 @@
   </div>
 </div>
 
-<!-- ============ BODY LOCATION ============ -->
 <div class="tablet" id="tablet-body-location">
   <div class="tablet-screen" style="height: 680px;">
     <div class="t-status">

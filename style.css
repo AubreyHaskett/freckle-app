@@ -1,54 +1,40 @@
-/* ============================================================
-   Freckle — freckle-app.com
-   Shared stylesheet · Design Guide v1 · May 2026
-   ============================================================ */
 
-/* ---- Google Fonts ----------------------------------------- */
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
-/* ---- Tokens ----------------------------------------------- */
 :root {
-  /* Surfaces */
-  --bone:   #FAF6F1;
+    --bone:   #FAF6F1;
   --paper:  #FFFFFF;
   --stone:  #F0EBE3;
   --shell:  #E8E2D8;
 
-  /* Ink */
-  --ink:      #1F1B17;
+    --ink:      #1F1B17;
   --graphite: #5C544C;
   --slate:    #8B847C;
   --mist:     #B8B0A6;
 
-  /* Brand */
-  --clay:       #B5623F;
+    --clay:       #B5623F;
   --clay-deep:  #8E4727;
   --clay-light: #E8C9B5;
   --clay-tint:  #F5E5D8;
 
-  /* Functional */
-  --sage:        #7E8E6E;
+    --sage:        #7E8E6E;
   --sage-light:  #DBE0D0;
   --amber:       #C8893A;
   --amber-light: #F2DFB8;
   --rust:        #A04A2D;
   --rust-light:  #ECCFC0;
 
-  /* Lines */
-  --hairline: #E8E2D8;
+    --hairline: #E8E2D8;
   --border:   #D6CFC2;
 
-  /* Type */
-  --serif: 'Fraunces', Georgia, serif;
+    --serif: 'Fraunces', Georgia, serif;
   --sans:  'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --mono:  'JetBrains Mono', 'SF Mono', Consolas, monospace;
 
-  /* Layout */
-  --max-w: 1040px;
+    --max-w: 1040px;
   --gutter: 32px;
 }
 
-/* ---- Reset ------------------------------------------------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
@@ -72,7 +58,6 @@ a {
   text-decoration: none;
 }
 
-/* ---- Typography ------------------------------------------- */
 .display {
   font-family: var(--serif);
   font-weight: 400;
@@ -120,21 +105,17 @@ a {
   font-weight: 500;
 }
 
-/* ---- Layout ----------------------------------------------- */
 .container {
   max-width: var(--max-w);
   margin: 0 auto;
   padding: 0 var(--gutter);
 }
 
-/* ---- Navigation ------------------------------------------- */
 .site-nav {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(250, 246, 241, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: var(--bone);
   border-bottom: 1px solid var(--hairline);
 }
 
@@ -182,7 +163,6 @@ a {
 .nav-links a.btn-primary { color: white; }
 .nav-links a.btn-primary:hover { color: white; }
 
-/* ---- Buttons ---------------------------------------------- */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -221,7 +201,6 @@ a {
   border-radius: 10px;
 }
 
-/* ---- Tags ------------------------------------------------- */
 .tag {
   display: inline-flex;
   align-items: center;
@@ -236,7 +215,6 @@ a {
 .tag-watch   { background: var(--amber-light); color: #6E4A0F; }
 .tag-neutral { background: var(--stone);       color: var(--graphite); }
 
-/* ---- Site footer ------------------------------------------ */
 .site-footer {
   border-top: 1px solid var(--hairline);
   padding: 40px 0;
@@ -280,7 +258,6 @@ a {
   letter-spacing: 0.04em;
 }
 
-/* ---- Legal page prose ------------------------------------- */
 .prose-page {
   max-width: 680px;
   margin: 0 auto;
@@ -386,7 +363,6 @@ a {
   margin-bottom: 0;
 }
 
-/* ---- Responsive ------------------------------------------- */
 @media (max-width: 768px) {
   :root { --gutter: 20px; }
 
