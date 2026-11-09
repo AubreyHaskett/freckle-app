@@ -1,0 +1,7 @@
+node_modules/
+.DS_Store
+.claude/
+exports/
+capture-ios.js
+package.json
+package-lock.json
