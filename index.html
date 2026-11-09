@@ -565,8 +565,6 @@
       padding: 96px 0 72px;
     }
     .feature-showcase.reverse { padding-top: 72px; padding-bottom: 96px; }
-    .feature-text-only { padding: 56px 0 24px; }
-    .feature-text-only .container { display: block; max-width: 720px; }
     .feature-showcase .container {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -624,7 +622,6 @@
     }
     @media (max-width: 600px) {
       .feature-showcase, .feature-showcase.reverse { padding: 48px 0; }
-      .feature-text-only .feature-detail-list { columns: 1; }
     }
     .p-photo-meta {
       display: flex;
@@ -1590,7 +1587,7 @@
   </div>
 </section>
 
-<section class="feature-showcase feature-text-only">
+<section class="feature-showcase reverse">
   <div class="container">
     <div class="feature-showcase-text">
       <h2>Measure, compare, export.</h2>
@@ -1605,6 +1602,134 @@
       </ul>
     </div>
     
+    <div class="feature-showcase-phones">
+      <div class="phone phone-sm">
+        <div class="phone-screen" style="height: 370px;">
+          <div class="phone-status">
+            <span>9:41</span>
+            <div class="ps-right">
+              <svg width="12" height="9" viewBox="0 0 14 10" fill="currentColor"><path d="M0 8h2v2H0zm4-2h2v4H4zm4-3h2v7H8zm4-3h2v10h-2z"/></svg>
+              <svg width="12" height="9" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="0.5" y="2" width="11" height="6" rx="1.5"/><rect x="12" y="4" width="1.5" height="2"/></svg>
+            </div>
+          </div>
+          <div class="phone-body">
+            <div style="font-family:var(--mono);font-size:7px;color:var(--clay);letter-spacing:0.06em;text-transform:uppercase;font-weight:500;">Step 2</div>
+            <div style="font-family:var(--serif);font-size:16px;font-weight:500;color:var(--ink);letter-spacing:-0.02em;line-height:1.15;margin:3px 0 2px;font-variation-settings:'opsz' 36;">Reference object</div>
+            <div style="font-size:8px;color:var(--graphite);margin-bottom:8px;line-height:1.4;">Place something with a known size next to the spot in your photo.</div>
+            <div style="font-family:var(--mono);font-size:6px;color:var(--slate);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px;">Coins</div>
+            <div style="background:var(--clay-tint);border:1px solid var(--clay);border-radius:8px;padding:6px 8px;margin-bottom:3px;display:flex;align-items:center;gap:6px;">
+              <div style="width:12px;height:12px;border-radius:50%;border:1.5px solid var(--clay);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><div style="width:6px;height:6px;border-radius:50%;background:var(--clay);"></div></div>
+              <div style="flex:1;"><div style="font-size:9px;font-weight:600;color:var(--clay);">US Dime</div><div style="font-family:var(--mono);font-size:6px;color:var(--slate);">17.91 mm</div></div>
+            </div>
+            <div style="background:var(--paper);border:1px solid var(--hairline);border-radius:8px;padding:6px 8px;margin-bottom:3px;display:flex;align-items:center;gap:6px;">
+              <div style="width:12px;height:12px;border-radius:50%;border:1.5px solid var(--mist);flex-shrink:0;"></div>
+              <div style="flex:1;"><div style="font-size:9px;color:var(--ink);">US Penny</div><div style="font-family:var(--mono);font-size:6px;color:var(--slate);">19.05 mm</div></div>
+            </div>
+            <div style="background:var(--paper);border:1px solid var(--hairline);border-radius:8px;padding:6px 8px;margin-bottom:3px;display:flex;align-items:center;gap:6px;">
+              <div style="width:12px;height:12px;border-radius:50%;border:1.5px solid var(--mist);flex-shrink:0;"></div>
+              <div style="flex:1;"><div style="font-size:9px;color:var(--ink);">US Nickel</div><div style="font-family:var(--mono);font-size:6px;color:var(--slate);">21.21 mm</div></div>
+            </div>
+            <div style="background:var(--paper);border:1px solid var(--hairline);border-radius:8px;padding:6px 8px;margin-bottom:3px;display:flex;align-items:center;gap:6px;">
+              <div style="width:12px;height:12px;border-radius:50%;border:1.5px solid var(--mist);flex-shrink:0;"></div>
+              <div style="flex:1;"><div style="font-size:9px;color:var(--ink);">US Quarter</div><div style="font-family:var(--mono);font-size:6px;color:var(--slate);">24.26 mm</div></div>
+            </div>
+            <div style="font-family:var(--mono);font-size:6px;color:var(--slate);letter-spacing:0.06em;text-transform:uppercase;margin:4px 0 4px;">Other</div>
+            <div style="background:var(--paper);border:1px solid var(--hairline);border-radius:8px;padding:6px 8px;margin-bottom:3px;display:flex;align-items:center;gap:6px;">
+              <div style="width:12px;height:12px;border-radius:50%;border:1.5px solid var(--mist);flex-shrink:0;"></div>
+              <div style="flex:1;"><div style="font-size:9px;color:var(--ink);">Custom object</div><div style="font-family:var(--mono);font-size:6px;color:var(--slate);">Enter your own reference</div></div>
+            </div>
+            <div style="background:var(--clay);color:white;text-align:center;padding:8px;border-radius:8px;font-size:9px;font-weight:600;margin-top:4px;">Continue</div>
+          </div>
+        </div>
+      </div>
+      <div class="phone">
+        <div class="phone-screen" style="height: 370px;">
+          <div class="phone-status">
+            <span>9:41</span>
+            <div class="ps-right">
+              <svg width="12" height="9" viewBox="0 0 14 10" fill="currentColor"><path d="M0 8h2v2H0zm4-2h2v4H4zm4-3h2v7H8zm4-3h2v10h-2z"/></svg>
+              <svg width="12" height="9" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="0.5" y="2" width="11" height="6" rx="1.5"/><rect x="12" y="4" width="1.5" height="2"/></svg>
+            </div>
+          </div>
+          <div class="phone-body">
+            <div style="display:flex; justify-content: space-between; margin-bottom: 6px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink)"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink)"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+            </div>
+            <div style="display:flex;align-items:center;gap:4px;margin-bottom:4px;">
+              <span class="p-tag p-tag-watch" style="font-size:7px;padding:2px 6px;">● Worth watching</span>
+              <span style="font-family:var(--mono);font-size:6px;color:var(--slate);letter-spacing:0.04em;">4 MO · 8 PHOTOS · 3 SPOTS</span>
+            </div>
+            <div style="font-family:var(--serif);font-size:16px;font-weight:500;color:var(--ink);letter-spacing:-0.02em;line-height:1.15;margin-bottom:2px;font-variation-settings:'opsz' 36;">Upper left back</div>
+            <div style="display:flex;align-items:center;gap:3px;font-size:7px;color:var(--graphite);margin-bottom:8px;">
+              <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Chest · <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg> Monthly
+            </div>
+            <div style="display:flex;border:1px solid var(--hairline);border-radius:8px;overflow:hidden;margin-bottom:8px;">
+              <div style="flex:1;text-align:center;padding:6px 0;background:var(--paper);">
+                <div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--ink);font-variation-settings:'opsz' 36;">128</div>
+                <div style="font-family:var(--mono);font-size:5px;color:var(--slate);letter-spacing:0.06em;text-transform:uppercase;">Days</div>
+              </div>
+              <div style="width:1px;background:var(--hairline);"></div>
+              <div style="flex:1;text-align:center;padding:6px 0;background:var(--paper);">
+                <div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--ink);font-variation-settings:'opsz' 36;">8</div>
+                <div style="font-family:var(--mono);font-size:5px;color:var(--slate);letter-spacing:0.06em;text-transform:uppercase;">Photos</div>
+              </div>
+              <div style="width:1px;background:var(--hairline);"></div>
+              <div style="flex:1;text-align:center;padding:6px 0;background:var(--paper);">
+                <div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--ink);font-variation-settings:'opsz' 36;">3</div>
+                <div style="font-family:var(--mono);font-size:5px;color:var(--slate);letter-spacing:0.06em;text-transform:uppercase;">Spots</div>
+              </div>
+            </div>
+            <div style="font-family:var(--mono);font-size:7px;color:var(--slate);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:5px;">Spots · 3</div>
+            <div style="background:var(--paper);border:1px solid var(--hairline);border-radius:8px;padding:7px 9px;margin-bottom:4px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-family:var(--serif);font-size:9px;color:var(--ink);font-variation-settings:'opsz' 36;">Large mole</span>
+                <span style="font-family:var(--mono);font-size:7px;color:var(--slate);">4.2 mm</span>
+              </div>
+              <svg viewBox="0 0 120 20" style="width:100%;height:16px;margin-top:3px;" preserveAspectRatio="none">
+                <polyline points="0,18 24,16 48,13 72,12 96,8 120,5" fill="none" stroke="var(--clay)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="120" cy="5" r="2" fill="var(--clay)" stroke="white" stroke-width="1"/>
+              </svg>
+            </div>
+            <div style="background:var(--paper);border:1px solid var(--hairline);border-radius:8px;padding:7px 9px;margin-bottom:4px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-family:var(--serif);font-size:9px;color:var(--ink);font-variation-settings:'opsz' 36;">Dark freckle</span>
+                <span style="font-family:var(--mono);font-size:7px;color:var(--slate);">2.1 mm</span>
+              </div>
+              <svg viewBox="0 0 120 20" style="width:100%;height:16px;margin-top:3px;" preserveAspectRatio="none">
+                <polyline points="0,10 30,10 60,11 90,10 120,10" fill="none" stroke="var(--sage)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="120" cy="10" r="2" fill="var(--sage)" stroke="white" stroke-width="1"/>
+              </svg>
+            </div>
+            <div style="background:var(--paper);border:1px solid var(--hairline);border-radius:8px;padding:7px 9px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-family:var(--serif);font-size:9px;color:var(--ink);font-variation-settings:'opsz' 36;">New spot</span>
+                <span style="font-family:var(--mono);font-size:7px;color:var(--slate);">1.8 mm</span>
+              </div>
+            </div>
+          </div>
+          <div class="phone-nav">
+            <div class="p-nav-item">
+              <div class="p-nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9"/><path d="M5 10v10h14V10"/></svg></div>
+              Home
+            </div>
+            <div class="p-nav-item active">
+              <div class="p-nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="14" r="2"/><circle cx="9" cy="17" r="2.5"/><circle cx="18" cy="6" r="1.5"/></svg></div>
+              Spots
+            </div>
+            <div class="p-nav-item">
+              <div class="p-nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l10-4 10 4-10 4-10-4z"/><path d="M6 9v5c0 2 3 3 6 3s6-1 6-3V9"/></svg></div>
+              Learn
+            </div>
+            <div class="p-nav-item">
+              <div class="p-nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+              Settings
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
