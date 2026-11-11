@@ -111,18 +111,6 @@ a {
   padding: 0 var(--gutter);
 }
 
-.maker-note {
-  background: var(--clay-tint);
-  border-bottom: 1px solid var(--clay-light);
-  color: var(--clay-deep);
-  font-size: 13px;
-  line-height: 1.4;
-  text-align: center;
-  padding: 8px 0;
-}
-
-.maker-note p { margin: 0; }
-
 .site-nav {
   position: sticky;
   top: 0;
@@ -400,6 +388,5 @@ a {
 
 @media (max-width: 480px) {
   .nav-links a { font-size: 13px; }
-  .maker-note { font-size: 12px; }
   .footer-links { flex-direction: column; gap: 12px; }
 }
