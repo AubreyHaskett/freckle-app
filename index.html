@@ -14,7 +14,7 @@
   <meta property="og:url" content="https://freckle-app.com/">
   <meta property="og:type" content="website">
 
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=4">
 
   <style>
     .hero {
@@ -616,7 +616,7 @@
     .feature-detail-list li:last-child { border-bottom: 1px solid var(--hairline); }
 
     @media (max-width: 900px) {
-      .feature-showcase .container { grid-template-columns: 1fr; gap: 48px; }
+      .feature-showcase .container { grid-template-columns: minmax(0, 1fr); gap: 48px; }
       .feature-showcase.reverse .container { direction: ltr; }
       .feature-showcase-phones { justify-content: center; }
     }
@@ -729,7 +729,7 @@
 
 
     @media (max-width: 900px) {
-      .hero .container { grid-template-columns: 1fr; gap: 48px; }
+      .hero .container { grid-template-columns: minmax(0, 1fr); gap: 48px; }
       .hero-text { max-width: 100%; }
       .mockup-pair { justify-content: center; }
     }
