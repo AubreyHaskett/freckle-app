@@ -14,7 +14,7 @@
   <meta property="og:url" content="https://freckle-app.com/">
   <meta property="og:type" content="website">
 
-  <link rel="stylesheet" href="style.css?v=4">
+  <link rel="stylesheet" href="style.css?v=5">
 
   <style>
     .hero {
@@ -39,6 +39,8 @@
       margin-bottom: 36px;
       max-width: 440px;
     }
+
+    .hero-sub:not(:last-of-type) { margin-bottom: 16px; }
 
     .hero-actions {
       display: flex;
@@ -738,13 +740,17 @@
       .hero { padding: 56px 0 48px; }
       .privacy-section { padding: 56px 0; }
       .download-section { padding: 56px 0; }
-      .phone { transform: scale(0.78); transform-origin: top center; margin: -20px -10px; }
-      .phone-sm { transform: scale(0.78); transform-origin: top center; margin: -20px -10px; }
-      .mockup-pair, .feature-showcase-phones { gap: 0; align-items: flex-start; }
+      .phone, .phone-sm { transform: none; zoom: 0.78; margin: 0; }
+      .mockup-pair, .feature-showcase-phones { gap: 8px; align-items: flex-start; }
     }
     @media (max-width: 380px) {
-      .phone { transform: scale(0.65); margin: -30px -16px; }
-      .phone-sm { transform: scale(0.65); margin: -30px -16px; }
+      .phone, .phone-sm { zoom: 0.65; }
+    }
+    @media (max-width: 310px) {
+      .phone, .phone-sm { zoom: 0.5; }
+    }
+    @media (max-width: 250px) {
+      .phone, .phone-sm { zoom: 0.38; }
     }
   </style>
 </head>
@@ -770,7 +776,11 @@
 
       <h1 class="display hero-headline">Notice the things<br><em>worth noticing.</em></h1>
 
-      <p class="hero-sub">Keep an eye on moles and skin spots over time. Take consistent photos, measure changes, and learn what's worth mentioning to your doctor. Freckle was made by someone personally affected by skin cancer, who knows prevention and detection have to start early. Skin photos are personal. With no accounts and no servers, you're the only one who has them.</p>
+      <p class="hero-sub">Keep an eye on moles and skin spots over time. Take consistent photos, measure changes, and learn what's worth mentioning to your doctor.</p>
+
+      <p class="hero-sub">Freckle was made by someone personally affected by skin cancer, who knows prevention and detection have to start early.</p>
+
+      <p class="hero-sub">Skin photos are personal. With no accounts and no servers, you're the only one who has them.</p>
 
       <div class="hero-actions">
         <a href="https://play.google.com/store/apps/details?id=com.freckle.android" target="_blank" rel="noopener" class="btn-store">
